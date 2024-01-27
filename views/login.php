@@ -3,7 +3,7 @@
 </header>
 <section class="pagina">
     <br><br>
-    <form action="./processalogin.php" method="post">
+    <form action="./processalogin.php" method="post" class="form-login">
         <label for="nome-usuario">Nome de usuário:</label>
         <input type="text" name="usuario" id="nome-usuario"><br>
         <label for="senha">Senha</label>
