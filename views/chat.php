@@ -53,7 +53,6 @@
                         <div class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ducimus magni ullam nemo dolore nostrum nesciunt nisi corporis error.</div>
                         <div class="horas">18:32</div>
                     </div>
-
                 </div>
                 <form class="escrever formulario">
                     <input type="text" name="text" class="msg">
@@ -74,24 +73,19 @@
         <h2>Amigos</h2>
         <form action="" method="post">
             <input type="text" class="search-input" placeholder="Pesquisar Amigos">
-            <input type="submit"class="add-friend" value="Adicionar">
+            <input type="submit" class="add-friend" value="Adicionar">
         </form>
-        <table class="friend-list">
-            <tr class="friend-item">
-                <td><span class="friend-name">Amigo 1</span></td>
-                <td><a href="#">Favorito</a></td>
-                <td><a href="#">Excluir</a></td>
-            </tr>
-            <tr class="friend-item">
-                <td><span class="friend-name">Amigo 1</span></td>
-                <td><a href="#">Favorito</a></td>
-                <td><a href="#">Excluir</a></td>
-            </tr>
-            <tr class="friend-item">
-                <td><span class="friend-name">Amigo 3</span></td>
-                <td><a href="#">Favorito</a></td>
-                <td><a href="#">Excluir</a></td>
-            </tr>
+        <table class="friend-list teste">
+            <?php
+            while ($linha = mysqli_fetch_array($consulta_amigos)) {
+                echo "<tr class='friend-item'>";
+                echo "<td><img src='./assets/img/noUser.png' alt='" . $linha['usuario'] . "'></td>";
+                echo "<td><span class='friend-name'>" . $linha['usuario'] . "</span></td>";
+                echo "<td><a href='#'>Favorito</a></td>";
+                echo "<td><a href='#'>Excluir</a></td>";
+                echo "</tr>";
+            }
+            ?>
         </table>
     </div>
 </div>

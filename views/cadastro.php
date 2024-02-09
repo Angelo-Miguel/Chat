@@ -1,19 +1,16 @@
 <header>
-    <h1>Login</h1>
+<h1>Cadastro</h1>
 </header>
 <section class="pagina">
     <br><br>
-    <form action="./processalogin.php" method="post" class="form-login">
+    <form action="./processacadastro.php" method="post" class="form-login">
         <label for="nome-usuario">Nome de usuário:</label>
         <input type="text" name="usuario" id="nome-usuario"><br>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email"><br>
         <label for="senha">Senha</label>
         <input type="password" name="senha" id="senha"><br>
-        <a href="?cadastro=cadastro" class="center">Cadastro</a><br>
-        <input type="submit" value="Entrar">
-        <?php if (isset($_GET['erro'])) { ?>
-            <p class="center">Usuário ou Senha inválidos</p>
-        <?php }
-        ?>
+        <input type="submit" value="Cadastro">
     </form>
 </section>
 
