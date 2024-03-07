@@ -26,7 +26,7 @@ nav a {
     text-decoration: none;
     padding: 8px 16px;
     margin: 0 px;
-    width: 86px;
+    width: 100px;
     text-align: center;
 }
 
@@ -168,26 +168,28 @@ input[type="submit"] {
     padding: 10px;
     border-radius: 8px;
 }
+.msg2{
+    min-width: 70%;
+}
 
-.msg1 a,
-.msg2 a {
+.mensagens a {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #333;
 }
 
-.msg1 img,
-.msg2 img {
+.mensagens img{
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
 }
 
-.msg1 .msg,
-.msg2 .msg {
+
+.texto {
     margin-top: 5px;
+    text-align: justify;
 }
 
 .horas {
@@ -223,7 +225,6 @@ input[type="submit"] {
 .header-gap {
     width: 139px;
 }
-
 
 .form-login {
     display: flex;
@@ -296,7 +297,7 @@ input[type="submit"] {
 }
 
 .search-input {
-    width: calc(100% - 90px);
+    width: calc(90% - 90px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
