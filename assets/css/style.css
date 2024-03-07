@@ -50,7 +50,7 @@ footer {
 }
 
 .menu-lateral {
-    width: 250px;
+    min-width: 250px;
     /* Adjust the width as needed */
     height: 100vh;
     background-color: #555;
@@ -88,6 +88,13 @@ footer {
     padding-right: 10px;
 }
 
+.content-header{
+    background-color:#888;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    border-radius: 5px 5px 0px 0px;
+}
 
 .content {
     margin-left: 250px;
@@ -102,7 +109,7 @@ footer {
     /* Altura do contêiner do chat */
     border: 1px solid #ccc;
     /* Borda do contêiner do chat */
-    border-radius: 5px;
+    border-radius: 0px 0px 5px 5px;
     /* Borda arredondada do contêiner do chat */
     overflow-y: auto;
     /* Adiciona uma barra de rolagem quando o conteúdo é longo */
@@ -141,9 +148,7 @@ input {
 
 input[type="submit"] {
     background-color: #333;
-    /* Cor de fundo do botão de envio */
     color: #fff;
-    /* Cor do texto no botão de envio */
     padding: 8px 15px;
     border: none;
     border-radius: 3px;
@@ -151,6 +156,8 @@ input[type="submit"] {
     width: 200px;
     margin: 0 auto;
 }
+
+
 
 .mensagens {
     display: flex;
@@ -195,7 +202,6 @@ input[type="submit"] {
 .horas {
     color: #888;
     font-size: 12px;
-    margin-top: 5px;
     align-self: flex-end;
     /* Alinha a .horas à direita */
 }

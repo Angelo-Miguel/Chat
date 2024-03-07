@@ -28,21 +28,26 @@
         <a href="./logout.php">Sair</a>
     </nav>
     <section>
+        <div class="content-header">
+            <?php ?>
+            <img src="./assets/img/noUser.png" width="50px">
+            <h3>Gustavo</h3>
+        </div>
         <div class="container">
             <div class="chat">
-                                <div class="mensagens">
+                <div class="mensagens">
                     <?php
                     while ($linha = mysqli_fetch_array($consulta_msg)) {
                         if ($linha['id_user2'] == $_SESSION['id_user']) {
-                            echo "<div class='msg1'>
-                        <div class='texto'>" . $linha['msg'] . "</div>
-                        <div class='horas'>" . $linha['hora'] . "</div>
-                    </div>";
+                            echo "<div class='msg1'>";
+                            echo "<div class='texto'>" . $linha['msg'] . "</div>";
+                            echo "<div class='horas'>" . $linha['hora'] . "</div>";
+                            echo "</div>";
                         } else {
-                            echo "<div class='msg2'>
-                                                <div class='texto'>" . $linha['msg'] . "</div>
-                        <div class='horas'>" . $linha['hora'] . "</div>
-                    </div>";
+                            echo "<div class='msg2'>";
+                            echo "<div class='texto'>" . $linha['msg'] . "</div>";
+                            echo "<div class='horas'>" . $linha['hora'] . "</div>";
+                            echo "</div>";
                         }
                     }
                     ?>

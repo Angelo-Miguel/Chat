@@ -18,7 +18,7 @@
 
     switch ($pagina) {
         case 'cadastro':
-            include './views/cadastro.php';
+            include './views/cadastro.html';
             break;
         case 'chat':
             include './views/chat.php';
