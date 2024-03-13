@@ -40,17 +40,22 @@
                     while ($linha = mysqli_fetch_array($consulta_msg)) {
                         if ($linha['id_user2'] == $_SESSION['id_user']) {
                             echo "<div class='msg1'>";
-                            echo "<div class='texto'>" . $linha['msg'] . "</div>";
-                            echo "<div class='horas'>" . $linha['hora'] . "</div>";
+                            echo "<div class='texto'>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
+                            echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
                             echo "</div>";
                         } else {
                             echo "<div class='msg2'>";
-                            echo "<div class='texto'>" . $linha['msg'] . "</div>";
-                            echo "<div class='horas'>" . $linha['hora'] . "</div>";
+                            echo "<div class='texto'>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
+                            echo "<div class='horas'>" . "18:22" . "</div>";
                             echo "</div>";
                         }
                     }
                     ?>
+                    <span class="msg2">
+                        <span class="texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur optio cupiditate magnam nisi praesentium ad nemo delectus minima corporis ullam?uuntur optio | | | | |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        </span>
+                        <span class="horas">18:20</span>
+                    </span>
                 </div>
                 <form class="escrever formulario">
                     <input type="text" name="text" class="msg">

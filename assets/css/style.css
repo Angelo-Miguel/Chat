@@ -1,7 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f4;
     overflow-y: hidden;
 }
@@ -18,16 +15,16 @@ nav {
     color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content:space-evenly;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    padding: 8px 16px;
+    padding: 2px 16px;
     margin: 0 px;
-    width: 100px;
     text-align: center;
+    width: 200px;
 }
 
 nav a:hover {
@@ -35,7 +32,7 @@ nav a:hover {
 }
 
 section {
-    padding: 20px;
+    padding: 10px;
 }
 
 footer {
@@ -92,7 +89,7 @@ footer {
     background-color:#888;
     display: flex;
     align-items: center;
-    justify-content:space-around;
+    justify-content:left;
     border-radius: 5px 5px 0px 0px;
 }
 
@@ -105,7 +102,7 @@ footer {
 .container {
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height: 410px;
     /* Altura do contêiner do chat */
     border: 1px solid #ccc;
     /* Borda do contêiner do chat */
@@ -171,9 +168,10 @@ input[type="submit"] {
     display: flex;
     flex-direction: column;
     max-width: 70%;
-    background-color: #f0f0f0;
+    background-color: #d9d9d9;
     padding: 10px;
     border-radius: 8px;
+    position: relative;
 }
 .msg2{
     min-width: 70%;
@@ -195,15 +193,16 @@ input[type="submit"] {
 
 
 .texto {
-    margin-top: 5px;
     text-align: justify;
 }
 
 .horas {
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
     color: #888;
+    padding: 5px 10px;
     font-size: 12px;
-    align-self: flex-end;
-    /* Alinha a .horas à direita */
 }
 
 .msg2 {
