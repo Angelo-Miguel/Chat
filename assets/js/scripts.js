@@ -13,3 +13,20 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 }
+
+
+/* 
+OUTRA OPÇAO PARA ABRI O MENU
+document.getElementById("open-modal").addEventListener("click", function () {
+  document.getElementById("myModal").style.display = "block";
+});
+
+document.querySelector(".close").addEventListener("click", function () {
+  document.getElementById("myModal").style.display = "none";
+});
+
+window.addEventListener("click", function (event) {
+  if (event.target == document.getElementById("myModal")) {
+    document.getElementById("myModal").style.display = "none";
+  }
+}); */

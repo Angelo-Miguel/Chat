@@ -29,5 +29,3 @@
             include 'views/login.php';
             break;
     }
-
-    include 'footer.php';

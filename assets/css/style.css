@@ -19,6 +19,11 @@ header {
     justify-content: center;
 }
 
+.img-perfil {
+    width: 50px;
+    height: 50px;
+}
+
 footer {
     display: flex;
     background-color: #333;
@@ -39,12 +44,12 @@ nav {
 nav a {
     display: flex;
     align-items: center;
-    justify-content: center;  
+    justify-content: center;
     color: white;
     text-decoration: none;
     width: 140px;
     height: inherit;
-    
+
 }
 
 nav a:hover {
@@ -73,12 +78,6 @@ section {
     flex-direction: column;
 }
 
-.menu-lateral img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-}
-
 .menu-lateral a {
     display: flex;
     align-items: center;
@@ -88,6 +87,7 @@ section {
     padding: 2px;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    text-indent: 10px;
 }
 
 .menu-lateral a:hover {
@@ -138,7 +138,7 @@ section {
     padding: 0px 10px;
 }
 
-.content-header-chat img{
+.content-header-chat img {
     margin-right: 20px;
 }
 
@@ -206,7 +206,7 @@ input[type="submit"] {
 
 /* Login e Cadastro */
 .form-login {
-    color:#333;
+    color: #333;
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -219,7 +219,7 @@ form {
     flex-direction: row;
 }
 
-.content-login{
+.content-login {
     height: 86vh;
 }
 
@@ -227,39 +227,62 @@ form {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
     left: 0;
     top: 0px;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: none;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
+    color: #333;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 4000px;
+    width: 70%;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Close Button modal */
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    transition: color 0.2s;
 }
 
 .close:hover,
 .close:focus {
     color: black;
-    text-decoration: none;
     cursor: pointer;
 }
 
+.aba-amigos h2 {
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.form-amigos {
+    display: flex;
+    align-items: center;
+}
+
+.form-amigos input {
+    float: right;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-amigos input[name="id"] {
+    width: 37px;
+    margin-left: 2px;
+    margin-right: 10px;
+}
 
 
 
