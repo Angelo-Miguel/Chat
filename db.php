@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     mysqli_report(MYSQLI_REPORT_OFF);
     $servidor = "localhost";
     $usuario = "root";
@@ -15,13 +16,11 @@
             $id_usuario = $linha['id_usuarios'];
         }
 
-        $query = "SELECT usuario FROM amigos inner join usuarios on id_user2 = id_usuarios where id_user1 =  $id_usuario";
+        $query = "SELECT * FROM amigos inner join usuarios on id_user2 = id_usuarios where id_user1 =  $id_usuario";
         $consulta_amigos = mysqli_query($conexao,$query);
 
         /* fazer recentes */
-        $query = "SELECT usuario FROM amigos inner join usuarios on id_user2 = id_usuarios where id_user1 =  $id_usuario";
-        $consulta_recentes = mysqli_query($conexao,$query);
-
-        $query = "SELECT * FROM msg inner join usuarios on msg.id_user1=id_usuarios where msg.id_user1 = '1' or msg.id_user2 = '1'";
+        $amigo_selecionado = $_SESSION['amigo_selecionado']  ?? 0;
+        $query = "SELECT * FROM msg inner join usuarios on msg.id_user1=usuarios.id_usuarios where msg.id_user1 = '$amigo_selecionado' and msg.id_user2 = $id_usuario or msg.id_user2 = '$amigo_selecionado' and msg.id_user1 = $id_usuario;";
         $consulta_msg = mysqli_query($conexao,$query);
     }

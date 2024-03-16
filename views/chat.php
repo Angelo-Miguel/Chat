@@ -1,10 +1,12 @@
 <div class="menu-lateral">
     <?php
-    while ($linha = mysqli_fetch_array($consulta_recentes)) {
+    while ($linha = mysqli_fetch_array($consulta_amigos)) {
         echo "<div class='user'>";
-        echo "<a href='#'><img src='./assets/img/noUser.png' alt='" . $linha['usuario'] . "'>" . $linha['usuario'] . "</a>";
+        echo "<a href='processaselecao.php?amigo_selecionado=" . $linha['id_usuarios'] . "'><img src='./assets/img/noUser.png'>" . $linha['usuario'] . "</a>";
         echo "</div>";
     }
+    mysqli_data_seek($consulta_amigos, 0);
+
     ?>
 
 </div>
@@ -28,46 +30,35 @@
         <a href="./logout.php">Sair</a>
     </nav>
     <section>
-        <div class="content-header">
-            <?php ?>
+        <div class="content-header-chat">
             <img src="./assets/img/noUser.png" width="50px">
             <h3>Gustavo</h3>
         </div>
-        <div class="container">
-            <div class="chat">
-                <div class="mensagens">
-                    <?php
-                    while ($linha = mysqli_fetch_array($consulta_msg)) {
-                        if ($linha['id_user2'] == $_SESSION['id_user']) {
-                            echo "<div class='msg1'>";
-                            echo "<div class='texto'>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
-                            echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
-                            echo "</div>";
-                        } else {
-                            echo "<div class='msg2'>";
-                            echo "<div class='texto'>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
-                            echo "<div class='horas'>" . "18:22" . "</div>";
-                            echo "</div>";
-                        }
+        <div class="container-chat">
+            <div class="mensagens">
+                <?php
+                while ($linha = mysqli_fetch_array($consulta_msg)) {
+                    if ($linha['id_user2'] == $_SESSION['id_user']) {
+                        echo "<div class='msg1'>";
+                        echo "<div>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
+                        echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
+                        echo "</div>";
+                    } else {
+                        echo "<div class='msg2'>";
+                        echo "<div>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
+                        echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
+                        echo "</div>";
                     }
-                    ?>
-                    <span class="msg2">
-                        <span class="texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur optio cupiditate magnam nisi praesentium ad nemo delectus minima corporis ullam?uuntur optio | | | | |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        </span>
-                        <span class="horas">18:20</span>
-                    </span>
-                </div>
-                <form class="escrever formulario">
-                    <input type="text" name="text" class="msg">
-                    <input type="submit" value="Enviar" class="msgenviar">
-                </form>
+                }
+                ?>
             </div>
+            <form class="escrever" action="enviarmsg.php" method="post">
+                <input type="text" name="text" class="msg">
+                <input type="submit" value="Enviar" class="msgenviar">
+            </form>
         </div>
     </section>
-
-    <footer>
-        <p>&copy; 2024 Chat. Todos os direitos reservados.</p>
-    </footer>
+    <?php include './footer.php' ?>
 </div>
 
 <?php

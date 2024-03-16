@@ -1,141 +1,17 @@
+/* Geral */
 body {
     background-color: #f4f4f4;
     overflow-y: hidden;
+    color: white;
 }
 
 header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #333;
-    color: white;
-    padding: 1px;
     text-align: center;
-}
-
-nav {
-    background-color: #444;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content:space-evenly;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 2px 16px;
-    margin: 0 px;
-    text-align: center;
-    width: 200px;
-}
-
-nav a:hover {
-    background-color: rgb(151, 151, 151);
-}
-
-section {
-    padding: 10px;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    overflow-x: hidden;
-}
-
-.menu-lateral {
-    min-width: 250px;
-    /* Adjust the width as needed */
-    height: 100vh;
-    background-color: #555;
-    position: fixed;
-    left: 0;
-    top: 0;
-    overflow-y: auto;
-    padding-top: 60px;
-    /* To give space for the header */
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    /* Coloca os itens em uma coluna */
-}
-
-.menu-lateral a {
-    display: flex;
-    align-items: center;
-    /* Alinha os itens verticalmente */
-    color: #fff;
-    text-decoration: none;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.menu-lateral a:hover {
-    background-color: rgb(151, 151, 151);
-}
-
-.user img {
-    width: 50px;
-    height: 50px;
-    padding-right: 10px;
-}
-
-.content-header{
-    background-color:#888;
-    display: flex;
-    align-items: center;
-    justify-content:left;
-    border-radius: 5px 5px 0px 0px;
-}
-
-.content {
-    margin-left: 250px;
-    /* Adjust the margin to match the menu width */
-    padding: 0 16px;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 410px;
-    /* Altura do contêiner do chat */
-    border: 1px solid #ccc;
-    /* Borda do contêiner do chat */
-    border-radius: 0px 0px 5px 5px;
-    /* Borda arredondada do contêiner do chat */
-    overflow-y: auto;
-    /* Adiciona uma barra de rolagem quando o conteúdo é longo */
-    flex-direction: column-reverse;
-}
-
-.chat {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.mensagens {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    /* Adiciona uma barra de rolagem quando o conteúdo é longo */
-}
-
-.escrever {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    height: 7vh;
 }
 
 .center {
@@ -143,77 +19,95 @@ input {
     justify-content: center;
 }
 
-input[type="submit"] {
+footer {
+    display: flex;
     background-color: #333;
-    color: #fff;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    width: 200px;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7vh;
 }
 
-
-
-.mensagens {
+nav {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    /* Espaçamento entre mensagens */
+    justify-content: space-evenly;
+    background-color: #444;
+    color: white;
+    height: 3.5vh;
 }
 
-.msg1,
-.msg2 {
-    display: flex;
-    flex-direction: column;
-    max-width: 70%;
-    background-color: #d9d9d9;
-    padding: 10px;
-    border-radius: 8px;
-    position: relative;
-}
-.msg2{
-    min-width: 70%;
-}
-
-.mensagens a {
+nav a {
     display: flex;
     align-items: center;
+    justify-content: center;  
+    color: white;
     text-decoration: none;
-    color: #333;
+    width: 140px;
+    height: inherit;
+    
 }
 
-.mensagens img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+nav a:hover {
+    background-color: rgb(151, 151, 151);
+}
+
+section {
+    padding: 1vh;
+}
+
+/*menu lateral e chat*/
+.content {
+    width: calc(100vw - 12vw);
+    height: 100vh;
+    margin-left: 12vw;
+}
+
+.menu-lateral {
+    display: flex;
+    position: fixed;
+    background-color: #555;
+    min-width: 12vw;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+}
+
+.menu-lateral img {
+    width: 50px;
+    height: 50px;
     margin-right: 10px;
 }
 
-
-.texto {
-    text-align: justify;
+.menu-lateral a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    margin: 1px 3px;
+    padding: 2px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.horas {
-    position: absolute;
-    bottom: 6px;
-    right: 10px;
-    color: #888;
-    padding: 5px 10px;
-    font-size: 12px;
+.menu-lateral a:hover {
+    background-color: rgb(151, 151, 151);
 }
 
-.msg2 {
-    margin-left: auto;
-    /* Empurra .msg2 para a direita */
+/* perfil e header */
+.content header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-gap {
+    width: 139px;
 }
 
 .perfil {
     display: flex;
     align-items: center;
-    margin-right: 10px;
 }
 
 .perfil img {
@@ -222,34 +116,114 @@ input[type="submit"] {
     margin-right: 10px;
 }
 
-.content header {
+/* Chat  e header do chat*/
+.container-chat {
     display: flex;
-    justify-content: space-between;
-}
-
-.header-gap {
-    width: 139px;
-}
-
-.form-login {
-    display: flex;
+    flex: 1;
     flex-direction: column;
-    width: 400px;
-    margin: 0 auto;
+    height: 72.5vh;
+    border: 1px solid #ccc;
+    border-radius: 0px 0px 10px 10px;
+    overflow-y: auto;
 }
 
-.formulario {
+.content-header-chat {
     display: flex;
-    flex-direction: row;
+    background-color: #666;
+    align-items: center;
+    justify-content: left;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 1.5rem;
+    height: 8vh;
+    padding: 0px 10px;
+}
+
+.content-header-chat img{
+    margin-right: 20px;
+}
+
+/* Mensagens, hora, etc */
+.mensagens {
+    display: flex;
+    flex: 1;
+    padding: 10px;
+    gap: 20px;
+    overflow-y: auto;
+    flex-direction: column;
+}
+
+.msg1,
+.msg2 {
+    display: flex;
+    position: relative;
+    background-color: #d9d9d9;
+    color: #222;
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: justify;
+}
+
+.msg2 {
+    /* Empurra .msg2 para a direita */
+    min-width: 70%;
+    margin-left: auto;
+}
+
+.horas {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #888;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+/* Input msg e botão enviar msg */
+input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.escrever {
+    padding: 10px;
 }
 
 .escrever .msg {
     width: 100%;
 }
 
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 200px;
+    margin: 0px auto;
+}
 
+/* Login e Cadastro */
+.form-login {
+    color:#333;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0px auto;
+    padding-top: 30px;
+}
 
-/* The Modal (background) */
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+.content-login{
+    height: 86vh;
+}
+
+/*  Modal */
 .modal {
     display: none;
     position: fixed;
@@ -262,7 +236,6 @@ input[type="submit"] {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -270,10 +243,9 @@ input[type="submit"] {
     border: 1px solid #888;
     width: 80%;
     max-width: 4000px;
-    /* Limitando a largura máxima do modal */
 }
 
-/* Close Button */
+/* Close Button modal */
 .close {
     color: #aaa;
     float: right;
@@ -288,35 +260,17 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-/* Estilos da aba Amigos */
-.friends-tab {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
 
-.friends-tab h2 {
-    font-size: 24px;
-    margin-top: 0;
-}
 
-.search-input {
-    width: calc(90% - 90px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
 
-.add-friend {
-    width: 80px !important;
-}
 
-.friend-item img{
-    width: 35px;
-}
 
-.friend-item{
-    width: 100%;
-}   
+
+
+
+
+.teste {
+    position: absolute;
+    color: red;
+    z-index: 10000000;
+}
