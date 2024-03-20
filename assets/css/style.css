@@ -3,6 +3,7 @@ body {
     background-color: #f4f4f4;
     overflow-y: hidden;
     color: white;
+    display: flex;
 }
 
 header {
@@ -22,6 +23,10 @@ header {
 .img-perfil {
     width: 50px;
     height: 50px;
+}
+
+.inv{
+    user-select: none;
 }
 
 footer {
@@ -62,16 +67,17 @@ section {
 
 /*menu lateral e chat*/
 .content {
-    width: calc(100vw - 12vw);
+    width: calc(100vw - 18vw);
     height: 100vh;
-    margin-left: 12vw;
+    flex: 1;
+    /* margin-left: 18vw; */
 }
 
 .menu-lateral {
     display: flex;
-    position: fixed;
+    position: relative;
     background-color: #555;
-    min-width: 12vw;
+    width: 18vw;
     height: 100vh;
     overflow-y: auto;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
@@ -124,7 +130,6 @@ section {
     height: 72.5vh;
     border: 1px solid #ccc;
     border-radius: 0px 0px 10px 10px;
-    overflow-y: auto;
 }
 
 .content-header-chat {
@@ -149,7 +154,7 @@ section {
     padding: 10px;
     gap: 20px;
     overflow-y: auto;
-    flex-direction: column;
+    flex-direction: column-reverse;
 }
 
 .msg1,
@@ -158,16 +163,20 @@ section {
     position: relative;
     background-color: #d9d9d9;
     color: #222;
-    max-width: 70%;
-    padding: 10px;
     border-radius: 8px;
     text-align: justify;
+    float:inline-end;
+    max-width: 70%;
+    min-width: 15%;
+    padding: 10px;
+}
+
+.msg1{
+    margin-right: auto;
 }
 
 .msg2 {
-    /* Empurra .msg2 para a direita */
-    min-width: 70%;
-    margin-left: auto;
+    margin-left: auto  /* Empurra .msg2 para a direita */;
 }
 
 .horas {
@@ -177,6 +186,17 @@ section {
     color: #888;
     padding: 5px 10px;
     font-size: 12px;
+}
+
+.dia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    border-radius: 50px;
+    min-height: 23px;
+    background-color: #222;
+    margin: 0px auto;
 }
 
 /* Input msg e botão enviar msg */
@@ -283,6 +303,23 @@ form {
     margin-left: 2px;
     margin-right: 10px;
 }
+
+
+@media (max-width: 768px) {
+    .menu-lateral{
+        display: none;
+    }
+}
+
+/* Media query para telas menores que 576px */
+@media (max-width: 576px) {
+    *{
+        font-size:medium;
+    }
+
+}
+
+
 
 
 

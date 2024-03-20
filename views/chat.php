@@ -8,7 +8,6 @@
     mysqli_data_seek($consulta_amigos, 0);
 
     ?>
-
 </div>
 
 <div class="content">
@@ -40,21 +39,20 @@
                     echo "<h3>" . $linha['usuario'] . "</h3>";
                 }
                 ?>
-
-
             </div>
             <div class="container-chat">
                 <div class="mensagens">
+                    
                     <?php
                     while ($linha = mysqli_fetch_array($consulta_msg)) {
                         if ($linha['id_user2'] == $_SESSION['id_user']) {
                             echo "<div class='msg1'>";
-                            echo "<div>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
+                            echo "<div>" . $linha['msg'] . $linha['dia'] . "<span class='inv'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div>";
                             echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
                             echo "</div>";
                         } else {
                             echo "<div class='msg2'>";
-                            echo "<div>" . $linha['msg'] . "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>";
+                            echo "<div>" . $linha['msg'] . $linha['dia']. "<span class='inv'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div>";
                             echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
                             echo "</div>";
                         }
@@ -70,7 +68,7 @@
     <?php
     } else {
     ?>
-        <!-- Arumar isso depois -->
+        <!-- Arumar isso depois | tela quando nao tem nenhum amigo selecionado-->
         <div style="height: 82.5vh"></div>
     <?php
     }
@@ -95,61 +93,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class='amigo'>
-                            <td><img class='img-perfil' src='./assets/img/noUser.png'><span>Angelo</span></td>
-                            <td><a href='#'>Favorito</a></td>
-                            <td><a href='#'>Excluir</a></td>
-                        </tr>
-                        <tr class='amigo'>
-                            <td><img class='img-perfil' src='./assets/img/noUser.png'><span>Gustavo</span></td>
-                            <td><a href='#'>Favorito</a></td>
-                            <td><a href='#'>Excluir</a></td>
-                        </tr>
+                        <?php
+                        while ($linha = mysqli_fetch_array($consulta_amigos)) {
+                            echo "<tr class='amigo'>";
+                            echo "<td><img class='img-perfil' src='./assets/img/noUser.png'><span>" . $linha['usuario'] . "</span></td>";
+                            echo "<td><a href='#'>Favorito</a></td>";
+                            echo "<td><a href='#'>Excluir</a></td>";
+                            echo "</tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <?php include './footer.php' ?>
-</div>
 
-<?php
-//erro ao adicionar os amigos
-if (isset($_SESSION['erro_amigos'])) {
-    echo '<script>alert("Usuário ou Id inválidos");</script>';
-    unset($_SESSION['erro_amigos']);
-} else if (isset($_SESSION['erro_mesmo_amigo'])) {
-    echo '<script>alert("Usuário já adicionado");</script>';
-    unset($_SESSION['erro_mesmo_amigo']);
-}
-?>
+    <?php
+    //erro ao adicionar os amigos
+    if (isset($_SESSION['erro_amigos'])) {
+        echo '<script>alert("Usuário ou Id inválidos");</script>';
+        unset($_SESSION['erro_amigos']);
+    } else if (isset($_SESSION['erro_mesmo_amigo'])) {
+        echo '<script>alert("Usuário já adicionado");</script>';
+        unset($_SESSION['erro_mesmo_amigo']);
+    }
+    ?>
 
 
 
 
-
-
-
-<!-- <thead>
-    <h2>Amigos</h2>
-    <form class='form-amigos' action="./processaamigos.php" method="post">
-        <input type="text" placeholder="Nome de usuário" name="usuario">
-        <input type="text" placeholder="ID" name="id">
-        <input type="submit" value="Adicionar">
-    </form>
-</thead>
-<tbody>
-
+    <!-- 
     <tr class='amigo'>
-        <td><img class='img-perfil' src='./assets/img/noUser.png'></td>
-        <td><span>Angelo</span></td>
+        <td><img class='img-perfil' src='./assets/img/noUser.png'><span>Angelo</span></td>
         <td><a href='#'>Favorito</a></td>
         <td><a href='#'>Excluir</a></td>
     </tr>
     <tr class='amigo'>
-        <td><img class='img-perfil' src='./assets/img/noUser.png'></td>
-        <td><span>Gustavo</span></td>
+        <td><img class='img-perfil' src='./assets/img/noUser.png'><span>Gustavo</span></td>
         <td><a href='#'>Favorito</a></td>
         <td><a href='#'>Excluir</a></td>
-    </tr>
-</tbody> -->
+    </tr> -->

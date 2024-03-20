@@ -15,9 +15,3 @@
         ?>
     </form>
 </div>
-
-
-
-<!-- <footer>
-    <p>&copy; 2024 Chat. Todos os direitos reservados.</p>
-</footer> -->

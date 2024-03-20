@@ -23,7 +23,7 @@
 
 
         $amigo_selecionado = $_SESSION['amigo_selecionado']  ?? 0;
-        $query = "SELECT * FROM msg inner join usuarios on msg.id_user1=usuarios.id_usuarios where msg.id_user1 = '$amigo_selecionado' and msg.id_user2 = $id_usuario or msg.id_user2 = '$amigo_selecionado' and msg.id_user1 = $id_usuario;";
+        $query = "SELECT * FROM msg inner join usuarios on msg.id_user1=usuarios.id_usuarios where msg.id_user1 = '$amigo_selecionado' and msg.id_user2 = $id_usuario or msg.id_user2 = '$amigo_selecionado' and msg.id_user1 = $id_usuario order by dia desc, hora desc";
         $consulta_msg = mysqli_query($conexao,$query);
 
         $query = "SELECT * FROM usuarios WHERE id_usuarios = '$amigo_selecionado'";
