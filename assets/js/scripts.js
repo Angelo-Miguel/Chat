@@ -30,3 +30,7 @@ window.addEventListener("click", function (event) {
     document.getElementById("myModal").style.display = "none";
   }
 }); */
+
+
+var objDiv = document.getElementById("msg");
+objDiv.scrollTop = objDiv.scrollHeight;
