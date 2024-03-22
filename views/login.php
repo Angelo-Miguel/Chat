@@ -13,5 +13,6 @@
             <p class="center">Usuário ou Senha inválidos</p>
         <?php }
         ?>
+        <p>lembrar de colocar md5 depois</p>
     </form>
 </div>

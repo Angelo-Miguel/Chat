@@ -3,7 +3,6 @@ body {
     background-color: #f4f4f4;
     overflow-y: hidden;
     color: white;
-    display: flex;
 }
 
 header {
@@ -18,6 +17,7 @@ header {
 .center {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .img-perfil {
@@ -25,7 +25,7 @@ header {
     height: 50px;
 }
 
-.inv{
+.inv {
     user-select: none;
 }
 
@@ -54,7 +54,6 @@ nav a {
     text-decoration: none;
     width: 140px;
     height: inherit;
-
 }
 
 nav a:hover {
@@ -66,6 +65,11 @@ section {
 }
 
 /*menu lateral e chat*/
+.chat {
+    display: flex;
+    flex-direction: row;
+}
+
 .content {
     width: calc(100vw - 18vw);
     height: 100vh;
@@ -165,18 +169,20 @@ section {
     color: #222;
     border-radius: 8px;
     text-align: justify;
-    float:inline-end;
+    float: inline-end;
     max-width: 70%;
     min-width: 15%;
     padding: 10px;
 }
 
-.msg1{
+.msg1 {
     margin-right: auto;
 }
 
 .msg2 {
-    margin-left: auto  /* Empurra .msg2 para a direita */;
+    margin-left: auto
+        /* Empurra .msg2 para a direita */
+    ;
 }
 
 .horas {
@@ -188,7 +194,7 @@ section {
     font-size: 12px;
 }
 
-.dia{
+.dia {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -247,11 +253,12 @@ form {
 .modal {
     display: none;
     position: fixed;
+    z-index: 10;
     left: 0;
-    top: 0px;
+    top: 0;
     width: 100%;
     height: 100%;
-    overflow: none;
+    overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -259,11 +266,9 @@ form {
     color: #333;
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 20px;
+    padding: 10px 20px;
     border: 1px solid #888;
-    width: 70%;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
 }
 
 .close {
@@ -271,7 +276,6 @@ form {
     float: right;
     font-size: 28px;
     font-weight: bold;
-    transition: color 0.2s;
 }
 
 .close:hover,
@@ -280,41 +284,73 @@ form {
     cursor: pointer;
 }
 
-.aba-amigos h2 {
-    margin-bottom: 20px;
-    margin-right: 10px;
+.form-amigos{
+    float: right;
 }
 
-.form-amigos {
+.form-amigos input[type="text"],
+.form-amigos input[type="submit"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-amigos input[type="submit"] {
+    width: 100px;
+    background-color: #4CAF50;
+    margin-left: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form-amigos input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para a tabela de amigos */
+#amigos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#amigos th,
+#amigos td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#amigos .nome{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
-.form-amigos input {
-    float: right;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+#amigos th {
+    background-color: #f2f2f2;
 }
 
-.form-amigos input[name="id"] {
-    width: 37px;
-    margin-left: 2px;
-    margin-right: 10px;
+#amigos tr:nth-child(even) {
+    /* Cor de fundo das linhas pares | estilo listrado*/
+    background-color: #f2f2f2;
 }
 
+#amigos tr:hover {
+    background-color: #ddd;
+    /* Cor de fundo da linha ao passar o mouse */
+}
 
+/* Media query para responsividade em outros dispositivos */
 @media (max-width: 768px) {
-    .menu-lateral{
+    .menu-lateral {
         display: none;
     }
 }
 
-/* Media query para telas menores que 576px */
 @media (max-width: 576px) {
-    *{
-        font-size:medium;
+    * {
+        font-size: medium;
     }
 
 }

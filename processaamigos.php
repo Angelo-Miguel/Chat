@@ -26,3 +26,4 @@ if (mysqli_num_rows($verifica_amizade) == 0) {
     echo "<script>alert('teste')</script>";
 }
 header("location:index.php");
+$_SESSION['modal'] = true;
