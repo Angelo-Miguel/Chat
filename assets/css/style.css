@@ -187,10 +187,10 @@ section {
 
 .horas {
     position: absolute;
-    bottom: 5px;
+    bottom: 9px;
     right: 5px;
     color: #888;
-    padding: 5px 10px;
+    padding: 2px 10px;
     font-size: 12px;
 }
 
@@ -214,6 +214,8 @@ input {
 
 .escrever {
     padding: 10px;
+    display: flex;
+    flex-direction: row;
 }
 
 .escrever .msg {
@@ -240,11 +242,6 @@ input[type="submit"] {
     padding-top: 30px;
 }
 
-form {
-    display: flex;
-    flex-direction: row;
-}
-
 .content-login {
     height: 86vh;
 }
@@ -258,14 +255,14 @@ form {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow-y:hidden;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
     color: #333;
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 10px 20px;
     border: 1px solid #888;
     width: 80%;
@@ -341,6 +338,41 @@ form {
     /* Cor de fundo da linha ao passar o mouse */
 }
 
+/* Modal Configurações */
+.modal-config form {
+    margin-bottom: 10px;
+}
+
+.modal-config label {
+    display: block;
+    margin-bottom: 5px;
+}
+.modal-config h2{
+    margin-bottom: 10px;
+}
+
+.modal-config input {
+    width: 79%;
+    height: 33px;
+}
+
+.modal-config input[type="submit"] {
+    width: 20%;
+    height: 33px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-config input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+
+
 /* Media query para responsividade em outros dispositivos */
 @media (max-width: 768px) {
     .menu-lateral {
@@ -353,20 +385,4 @@ form {
         font-size: medium;
     }
 
-}
-
-
-
-
-
-
-
-
-
-
-
-.teste {
-    position: absolute;
-    color: red;
-    z-index: 10000000;
 }

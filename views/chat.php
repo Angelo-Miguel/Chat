@@ -29,8 +29,8 @@
             </header>
 
             <nav>
-                <a id="openModal">Amigos</a>
-                <a href="#!">Configurações</a>
+                <a onclick="openModal('modalAmigos')">Amigos</a>
+                <a onclick="openModal('modalConfig')">Configurações</a>
                 <a href="./logout.php">Sair</a>
             </nav>
             <?php
@@ -88,10 +88,10 @@
             ?>
 
             <!-- Modal da aba Amigos -->
-            <div id="myModal" class="modal">
+            <div id="modalAmigos" class="modal">
                 <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div class="aba-amigos">
+                    <span class="close" onclick="closeModal('modalAmigos')">&times;</span>
+                    <div class="modal-amigos">
                         <h2>Amigos</h2>
                         <form class='form-amigos' action="./processaamigos.php" method="post">
                             <input type="text" placeholder="Nome de usuário" name="usuario">
@@ -121,20 +121,46 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal Configurações -->
+            <div id="modalConfig" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('modalConfig')">&times;</span>
+                    <div class="modal-config">
+                        <h2>Configurações</h2>
+                        <form action="./processanome.php" method="post">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" name="name">
+                            <input type="submit" value="Salvar">
+                        </form>
+                        <form action="./processafoto.php" method="post">
+                            <label for="profilePic">Foto de Perfil:</label>
+                            <input type="file" id="profilePic" name="profilePic">
+                            <input type="submit" value="Salvar">
+                        </form>
+                        <form action="./processasenha.php" method="post">
+                            <label for="currentPassword">Senha Atual:</label>
+                            <input type="password" id="currentpassword" name="currentpassword">
+                            <label for="newPassword">Senha Nova:</label>
+                            <input type="password" id="newPassword" name="newPassword">
+                            <input type="submit" value="Salvar">
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             <?php
             //erro ao adicionar os amigos
             if (isset($_SESSION['erro_amigo_n_encontrado'])) {
-                echo '<script>alert("Usuário ou Id inválidos");</script>';
+                echo '<script>setTimeout(() => {alert("Usuário ou Id inválidos");}, 100);</script>';
                 unset($_SESSION['erro_amigo_n_encontrado']);
             }
             if (isset($_SESSION['erro_mesmo_amigo'])) {
-                echo '<script>alert("Usuário já adicionado");</script>';
+                echo '<script>setTimeout(() => {alert("Usuário ou Id inválidos");}, 100);</script>';
                 unset($_SESSION['erro_mesmo_amigo']);
             }
+            /* mantem o modal ativo ao pressionar o input */
             if (isset($_SESSION['modal'])) {
-                // Se verdadeiro, exibe o modal
-                echo "<script>document.getElementById('myModal').style.display = 'block';</script>";
+                echo "<script>document.getElementById('modalAmigos').style.display = 'block';</script>";
                 unset($_SESSION['modal']);
             }
             ?>

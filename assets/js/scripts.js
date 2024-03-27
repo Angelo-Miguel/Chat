@@ -1,19 +1,29 @@
 /* Modal amigos */
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("openModal");
-var span = document.getElementsByClassName("close")[0];
-
-btn.onclick = function () {
+// Função para abrir o modal com o ID especificado
+function openModal(id) {
+  var modal = document.getElementById(id);
   modal.style.display = "block";
 }
-span.onclick = function () {
+
+// Função para fechar o modal com o ID especificado
+function closeModal(id) {
+  var modal = document.getElementById(id);
   modal.style.display = "none";
 }
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+
+// Fechar o modal quando clicar fora dele
+window.onclick = function(event) {
+  var modals = document.getElementsByClassName('modal');
+  for (var i = 0; i < modals.length; i++) {
+      if (event.target == modals[i]) {
+          modals[i].style.display = "none";
+      }
   }
 }
+
+
+
+
 
 /* Coloca a barra de scroll da div msg para baixo */
 var objDiv = document.getElementById("msg");
