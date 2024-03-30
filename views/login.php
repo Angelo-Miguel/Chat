@@ -9,10 +9,9 @@
         <input type="password" name="senha" id="senha"><br>
         <a href="?cadastro=cadastro" class="center">Cadastro</a><br>
         <input type="submit" value="Entrar">
-        <?php if (isset($_GET['erro'])) { ?>
+        <?php if (isset($_GET['erro_login'])) { ?>
             <p class="center">Usuário ou Senha inválidos</p>
         <?php }
         ?>
-        <p>lembrar de colocar md5 depois</p>
     </form>
 </div>

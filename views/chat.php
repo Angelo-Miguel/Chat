@@ -48,29 +48,7 @@
                     </div>
                     <div class="container-chat">
                         <div class="mensagens" id="msg">
-
-                            <?php
-                            $diaatual = '0/0';
-                            while ($linha = mysqli_fetch_array($consulta_msg)) {
-                                $dia = date('d/m', strtotime($linha['dia']));
-
-                                if ($diaatual != $dia) {
-                                    echo "<div class='dia'>" . $dia . "</div>";
-                                    $diaatual = $dia;
-                                }
-                                if ($linha['id_user2'] == $_SESSION['id_user']) {
-                                    echo "<div class='msg1'>";
-                                    echo "<div>" . $linha['msg'] . "<span class='inv'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div>";
-                                    echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
-                                    echo "</div>";
-                                } else {
-                                    echo "<div class='msg2'>";
-                                    echo "<div>" . $linha['msg'] . "<span class='inv'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div>";
-                                    echo "<div class='horas'>" . date('H:i', strtotime($linha['hora'])) . "</div>";
-                                    echo "</div>";
-                                }
-                            }
-                            ?>
+                            <!-- Mensagens serão adicionadas via ajax -->
                         </div>
                         <form class="escrever" action="enviarmsg.php" method="post">
                             <input type="text" name="text" class="msg" required minlength="1">
@@ -129,19 +107,19 @@
                         <h2>Configurações</h2>
                         <form action="./processanome.php" method="post">
                             <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name">
+                            <input type="text" id="name" name="name" required>
                             <input type="submit" value="Salvar">
                         </form>
-                        <form action="./processafoto.php" method="post">
+                        <form action="./processafoto.php" method="post" enctype="multipart/form-data">
                             <label for="profilePic">Foto de Perfil:</label>
-                            <input type="file" id="profilePic" name="profilePic">
+                            <input type="file" id="profilePic" name="profilePic" required>
                             <input type="submit" value="Salvar">
                         </form>
                         <form action="./processasenha.php" method="post">
                             <label for="currentPassword">Senha Atual:</label>
-                            <input type="password" id="currentpassword" name="currentpassword">
+                            <input type="password" id="currentPassword" name="currentPassword" required>
                             <label for="newPassword">Senha Nova:</label>
-                            <input type="password" id="newPassword" name="newPassword">
+                            <input type="password" id="newPassword" name="newPassword" required>
                             <input type="submit" value="Salvar">
                         </form>
                     </div>
@@ -155,8 +133,16 @@
                 unset($_SESSION['erro_amigo_n_encontrado']);
             }
             if (isset($_SESSION['erro_mesmo_amigo'])) {
-                echo '<script>setTimeout(() => {alert("Usuário ou Id inválidos");}, 100);</script>';
+                echo '<script>setTimeout(() => {alert("Usúario já adicionado");}, 100);</script>';
                 unset($_SESSION['erro_mesmo_amigo']);
+            }
+            if (isset($_SESSION['erro_senha_errada'])) {
+                echo "<script>setTimeout(() => {alert('Senha Errada')}, 100)</script>";
+                unset($_SESSION['erro_senha_errada']);
+            }
+            if (isset($_SESSION['erro_mesma_senha'])) {
+                echo "<script>setTimeout(() => {alert('Você não pode redefinir a mesma senha')}, 100)</script>";
+                unset($_SESSION['erro_mesma_senha']);
             }
             /* mantem o modal ativo ao pressionar o input */
             if (isset($_SESSION['modal'])) {
