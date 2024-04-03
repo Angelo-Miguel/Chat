@@ -24,7 +24,8 @@ if (mysqli_num_rows($verifica_amizade) == 0) {
 } else {
     $_SESSION['erro_mesmo_amigo'] = true;
 }
-header("location:index.php");
-// Depois colocar o id do modal na session e para deixar os dois modais nao fecharem
+
 // Nao deixa o modal fechar
-$_SESSION['modal'] = true;
+$_SESSION['modal'] = 'modalAmigos';
+
+header("location:index.php");

@@ -16,4 +16,7 @@ if (($senhaAntiga != $senhaNova) and ($senhaAntiga == $senhaVerdade)) {
     $_SESSION['erro_mesma_senha'] = true;
 }
 
+// Nao deixa o modal fechar
+$_SESSION['modal'] = 'modalConfig';
+
 header('location:index.php');

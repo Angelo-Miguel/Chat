@@ -87,10 +87,11 @@
                             <tbody>
                                 <?php
                                 while ($linha = mysqli_fetch_array($consulta_amigos)) {
+                                    $conteudoArquivo = $linha['imagem'];
                                     echo "<tr class='amigo'>";
                                     echo "<td><div class='nome'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'><p>" . $linha['usuario'] . "</p></div></td>";
                                     echo "<td><a href='#'>Favorito</a></td>";
-                                    echo "<td><a href='#'>Excluir</a></td>";
+                                    echo "<td><a href='deletaamigo.php?id_deletar=". $linha['id_usuarios']." '>Excluir</a></td>";
                                     echo "</tr>";
                                 }
                                 ?>
@@ -144,9 +145,11 @@
                 echo "<script>setTimeout(() => {alert('Você não pode redefinir a mesma senha')}, 100)</script>";
                 unset($_SESSION['erro_mesma_senha']);
             }
+
+
             /* mantem o modal ativo ao pressionar o input */
             if (isset($_SESSION['modal'])) {
-                echo "<script>document.getElementById('modalAmigos').style.display = 'block';</script>";
+                echo "<script>document.getElementById('".$_SESSION['modal']."').style.display = 'block';</script>";
                 unset($_SESSION['modal']);
             }
             ?>

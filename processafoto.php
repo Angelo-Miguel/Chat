@@ -11,5 +11,8 @@ $conteudoArquivo = mysqli_real_escape_string($conexao, $conteudoArquivo);
 $query = "UPDATE usuarios SET imagem = '$conteudoArquivo' WHERE id_usuarios = '$id_user'";
 mysqli_query($conexao, $query);
 
+// Nao deixa o modal fechar
+$_SESSION['modal'] = 'modalConfig';
+
 header('location:index.php');
 ?>
