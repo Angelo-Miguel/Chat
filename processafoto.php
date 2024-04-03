@@ -1,19 +1,15 @@
 <?php
 include './db.php';
-// Verifica se o arquivo foi enviado sem erros
-if ($_FILES["imagem"]["error"] == 0) {
-    $nomeArquivo = $_FILES["imagem"]["name"];
-    $conteudoArquivo = mysqli_real_escape_string($conexao, file_get_contents($_FILES["imagem"]["tmp_name"]));
 
-    $sql = "UPDATE USUARIOS SET imagem = '$conteudoArquivo' WHERE id_usuarios = '3'";
-    // Executa a instrução SQL
-    if (mysqli_query($conexao, $sql)) {
-        echo "Imagem enviada com sucesso!";
-    } else {
-        echo "Erro ao enviar a imagem: " . mysqli_error($conexao);
-    }
-} else {
-    echo "Erro ao fazer upload da imagem.";
-}
+$id_user = $_SESSION['id_user'];
+$conteudoArquivo = file_get_contents($_FILES["profilePic"]["tmp_name"]);
 
-//header('location:index.php');
+// Converte o conteúdo do arquivo em um formato seguro para uso em consultas SQL
+$conteudoArquivo = mysqli_real_escape_string($conexao, $conteudoArquivo);
+
+// Prepara a instrução SQL para inserir os dados no banco de dados
+$query = "UPDATE usuarios SET imagem = '$conteudoArquivo' WHERE id_usuarios = '$id_user'";
+mysqli_query($conexao, $query);
+
+header('location:index.php');
+?>
