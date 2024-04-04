@@ -50,9 +50,9 @@
                         <div class="mensagens" id="msg">
                             <!-- Mensagens serão adicionadas via ajax -->
                         </div>
-                        <form class="escrever" action="enviarmsg.php" method="post">
-                            <input type="text" name="text" class="msg" required minlength="1">
-                            <input type="submit" value="Enviar" class="msgenviar">
+                        <form class="escrever">
+                            <input type="text" name="text" id="text" class="msg" required minlength="1">
+                            <input type="submit" onclick="sendMessage(); return false" class="msgenviar">Enviar</input>
                         </form>
                     </div>
                 </section>

@@ -32,12 +32,22 @@ function msgScrollHeight() {
 /* Ajax para atualizar o chat em tempo real */
 function updateChat() {
   $.ajax({
-    url: 'ajax_msg.php',
+    url: 'ajax_fetch_msg.php',
     success: function (data) {
       $('#msg').html(data);
       setTimeout(updateChat, 1000); // Atualiza a cada segundo
     }
   });
+}
+
+function sendMessage() {
+  var text = $('#text').val();
+  $.post('ajax_enviar_msg.php', { text: text }, function (data) {
+    $('#text').val('');
+  });
+  setInterval(() => {
+    msgScrollHeight();
+  }, 100);
 }
 
 updateChat(); // Inicia a atualização do chat
