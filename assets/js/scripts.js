@@ -50,5 +50,14 @@ function sendMessage() {
   }, 100);
 }
 
+var sidMenu = document.getElementById("sid-menu");
+function openMenu() {
+  sidMenu.classList.add("open-sid-menu");
+}
+
+function closeMenu() {
+  sidMenu.classList.remove("open-sid-menu");
+}
+
 updateChat(); // Inicia a atualização do chat
 msgScrollHeight(); // Define que a barra de rolagem vai estar no fim

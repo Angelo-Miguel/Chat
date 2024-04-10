@@ -21,8 +21,8 @@ header {
 }
 
 .img-perfil {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
@@ -105,15 +105,27 @@ section {
     background-color: rgb(151, 151, 151);
 }
 
+.sid-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.close-sid {
+    display: none;
+}
+
 /* perfil e header */
 .content header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0px 10px;
 }
 
 .header-gap {
-    width: 139px;
+    width: 100px !important;
 }
 
 .perfil {
@@ -122,8 +134,9 @@ section {
 }
 
 .perfil img {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     margin-right: 10px;
 }
 
@@ -174,6 +187,7 @@ section {
     max-width: 70%;
     min-width: 15%;
     padding: 10px;
+    word-break: break-word;
 }
 
 .msg1 {
@@ -256,7 +270,7 @@ input[type="submit"] {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow-y:hidden;
+    overflow-y: hidden;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -282,7 +296,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-.form-amigos{
+.form-amigos {
     float: right;
 }
 
@@ -319,7 +333,7 @@ input[type="submit"] {
     text-align: left;
 }
 
-#amigos .nome{
+#amigos .nome {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -348,7 +362,8 @@ input[type="submit"] {
     display: block;
     margin-bottom: 5px;
 }
-.modal-config h2{
+
+.modal-config h2 {
     margin-bottom: 10px;
 }
 
@@ -379,11 +394,55 @@ input[type="submit"] {
     .menu-lateral {
         display: none;
     }
+
+    .close-sid {
+        display: block !important;
+    }
+
+    .sid-title {
+        justify-content: space-between !important;
+    }
+
+    .menu-sid-button {
+        display: block !important;
+    }
+
+    .open-sid-menu {
+        position: absolute;
+        z-index: 10;
+        display: flex;
+        min-width: 50vw;
+    }
+
 }
 
 @media (max-width: 576px) {
-    * {
+    p {
         font-size: medium;
     }
 
+    .open-sid-menu {
+        min-width: 80vw !important;
+    }
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }

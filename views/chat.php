@@ -1,5 +1,10 @@
     <div class="chat">
-        <div class="menu-lateral">
+        <div id="sid-menu" class="menu-lateral">
+            <div class="sid-title">
+                <span class="close-sid"></span>
+                <h3>Amigos</h3>
+                <span class="close close-sid" onclick="closeMenu()">&times;</span>
+            </div>
             <?php
             while ($linha = mysqli_fetch_array($consulta_amigos)) {
                 $conteudoArquivo = $linha['imagem'];
@@ -14,12 +19,14 @@
 
         <div class="content">
             <header>
-                <h1 class="header-gap"></h1>
+                <h1 class="header-gap "><svg onclick="openMenu()" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="menu-sid-button" viewBox="0 0 16 16" style="display:none;">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                    </svg></h1>
                 <h1 class="header-gap">Chat</h1>
                 <div class="header-gap perfil">
                     <?php
                     $conteudoArquivo = (mysqli_fetch_assoc($consulta_login))['imagem'] ?? null;
-                    echo "<img class='avatar img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $_SESSION['usuario'] . "'>";
+                    echo "<img src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $_SESSION['usuario'] . "'>";
                     ?>
                     <div class="nome-id">
                         <span><?= $_SESSION['usuario'] ?></span><br>
@@ -42,7 +49,7 @@
                         while ($linha = mysqli_fetch_array($consulta_amigo_selecionado)) {
                             $conteudoArquivo = $linha['imagem'];
                             echo "<img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'>";
-                            echo "<h3>" . $linha['usuario'] . "</h3>";
+                            echo "<h4>" . $linha['usuario'] . "</h4>";
                         }
                         ?>
                     </div>
@@ -52,7 +59,7 @@
                         </div>
                         <form class="escrever">
                             <input type="text" name="text" id="text" class="msg" required minlength="1">
-                            <input type="submit" onclick="sendMessage(); return false" class="msgenviar">Enviar</input>
+                            <input type="submit" onclick="sendMessage(); return false" class="msgenviar" value="Enviar">
                         </form>
                     </div>
                 </section>
@@ -91,7 +98,7 @@
                                     echo "<tr class='amigo'>";
                                     echo "<td><div class='nome'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'><p>" . $linha['usuario'] . "</p></div></td>";
                                     echo "<td><a href='#'>Favorito</a></td>";
-                                    echo "<td><a href='deletaamigo.php?id_deletar=". $linha['id_usuarios']." '>Excluir</a></td>";
+                                    echo "<td><a href='deletaamigo.php?id_deletar=" . $linha['id_usuarios'] . " '>Excluir</a></td>";
                                     echo "</tr>";
                                 }
                                 ?>
@@ -147,9 +154,9 @@
             }
 
 
-            /* mantem o modal ativo ao pressionar o input */
+            /* mantem os modais ativos ao pressionar o input*/
             if (isset($_SESSION['modal'])) {
-                echo "<script>document.getElementById('".$_SESSION['modal']."').style.display = 'block';</script>";
+                echo "<script>document.getElementById('" . $_SESSION['modal'] . "').style.display = 'block';</script>";
                 unset($_SESSION['modal']);
             }
             ?>
