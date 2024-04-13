@@ -121,7 +121,7 @@
                         <form action="./processafoto.php" method="post" enctype="multipart/form-data">
                             <label for="profilePic">Foto de Perfil:</label>
                             <input type="file" id="profilePic" name="profilePic" required>
-                            <input type="submit" value="Salvar">
+                            <input type="submit" value="Salvar" style="position: relative;top:-2px;">
                         </form>
                         <form action="./processasenha.php" method="post">
                             <label for="currentPassword">Senha Atual:</label>

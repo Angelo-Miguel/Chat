@@ -30,14 +30,35 @@ function msgScrollHeight() {
 }
 
 /* Ajax para atualizar o chat em tempo real */
+var ultimosDados = null;
+
 function updateChat() {
   $.ajax({
     url: 'ajax_fetch_msg.php',
     success: function (data) {
-      $('#msg').html(data);
-      setTimeout(updateChat, 1000); // Atualiza a cada segundo
+      // Verifica se houve uma mudança nos dados recebidos
+      if (houveAtualizacao(data)) {
+        msgScrollHeight(); // Chama a função para ajustar a altura da mensagem
+        $('#msg').html(data); // Atualiza o conteúdo do chat
+      }
+      setTimeout(updateChat, 1000); // Agende a próxima atualização
     }
   });
+}
+
+// Função para verificar se houve uma atualização nos dados recebidos
+function houveAtualizacao(novosDados) {
+  if (!ultimosDados) {
+    ultimosDados = novosDados;
+    return true;
+  }
+
+  if (novosDados !== ultimosDados) {
+    ultimosDados = novosDados;
+    return true; 
+  }
+
+  return false; 
 }
 
 function sendMessage() {
