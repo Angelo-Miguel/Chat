@@ -1,7 +1,7 @@
 <?php
 include './db.php';
 date_default_timezone_set('America/Sao_Paulo');
-$hora = date('H:i');
+$hora = date('H:i:s');
 $dia = date("Y-m-d");
 
 $texto = $_POST['text'];

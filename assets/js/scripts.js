@@ -30,47 +30,62 @@ function msgScrollHeight() {
 }
 
 /* Ajax para atualizar o chat em tempo real */
-var ultimosDados = null;
+var ultimosDadosChat = null;
+var ultimosDadosRecentes = null;
 
 function updateChat() {
   $.ajax({
     url: 'ajax_fetch_msg.php',
     success: function (data) {
       // Verifica se houve uma mudança nos dados recebidos
-      if (houveAtualizacao(data)) {
+      $('#msg').html(data); // Atualiza o conteúdo do chat
+      if (houveAtualizacaoChat(data)) {
         msgScrollHeight(); // Chama a função para ajustar a altura da mensagem
-        $('#msg').html(data); // Atualiza o conteúdo do chat
       }
       setTimeout(updateChat, 1000); // Agende a próxima atualização
     }
   });
 }
 
-// Função para verificar se houve uma atualização nos dados recebidos
-function houveAtualizacao(novosDados) {
-  if (!ultimosDados) {
-    ultimosDados = novosDados;
-    return true;
-  }
-
-  if (novosDados !== ultimosDados) {
-    ultimosDados = novosDados;
-    return true; 
-  }
-
-  return false; 
-}
-
+/* AJAX ao mandar msg */
 function sendMessage() {
   var text = $('#text').val();
   $.post('ajax_enviar_msg.php', { text: text }, function (data) {
     $('#text').val('');
   });
-  setInterval(() => {
-    msgScrollHeight();
-  }, 100);
 }
 
+function updateRecentes() {
+  $.ajax({
+    url: 'ajax_fetch_recentes.php',
+    success: function (data) {
+      if (houveAtualizacaoRecentes(data)) {
+        // Verifica se houve uma mudança nos dados recebidos
+        $('#recentes').html(data); // Atualiza o conteúdo do chat
+      }
+      setTimeout(updateRecentes, 1000); // Agende a próxima atualização
+    }
+  });
+}
+
+// Função para verificar se houve uma atualização nos dados recebidos
+function houveAtualizacaoChat(novosDados) {
+  if (ultimosDadosChat != novosDados) {
+    ultimosDadosChat = novosDados;
+    return true;
+  }
+  return false;
+}
+
+function houveAtualizacaoRecentes(novosDados) {
+  if (ultimosDadosRecentes != novosDados) {
+    ultimosDadosRecentes = novosDados;
+    return true;
+  }
+  return false;
+}
+
+/* Abir ou Fechar o menu lateral para mobile */
 var sidMenu = document.getElementById("sid-menu");
 function openMenu() {
   sidMenu.classList.add("open-sid-menu");
@@ -80,5 +95,7 @@ function closeMenu() {
   sidMenu.classList.remove("open-sid-menu");
 }
 
+/* Iniciar Funções */
 updateChat(); // Inicia a atualização do chat
+updateRecentes(); // Inicia a atualização de conversas recentes
 msgScrollHeight(); // Define que a barra de rolagem vai estar no fim

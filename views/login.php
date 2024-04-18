@@ -9,6 +9,7 @@
         <input type="password" name="senha" id="senha">
         <a href="?cadastro=cadastro" class="center">Cadastro</a>
         <input type="submit" value="Entrar">
+        <!-- Erros ao tentar logar -->
         <?php if (isset($_GET['erro_login'])) { ?>
             <p class="center">Usuário ou Senha inválidos</p>
         <?php }

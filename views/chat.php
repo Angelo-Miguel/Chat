@@ -2,19 +2,10 @@
         <div id="sid-menu" class="menu-lateral">
             <div class="sid-title">
                 <span class="close-sid"></span>
-                <h3>Amigos</h3>
+                <h3>Recentes</h3>
                 <span class="close close-sid" onclick="closeMenu()">&times;</span>
             </div>
-            <?php
-            while ($linha = mysqli_fetch_array($consulta_amigos)) {
-                $conteudoArquivo = $linha['imagem'];
-                echo "<div class='user'>";
-                echo "<a href='processaselecao.php?amigo_selecionado=" . $linha['id_usuarios'] . "'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'>" . $linha['usuario'] . "</a>";
-                echo "</div>";
-            }
-            mysqli_data_seek($consulta_amigos, 0);
-
-            ?>
+            <span id="recentes"></span>
         </div>
 
         <div class="content">
@@ -96,7 +87,7 @@
                                 while ($linha = mysqli_fetch_array($consulta_amigos)) {
                                     $conteudoArquivo = $linha['imagem'];
                                     echo "<tr class='amigo'>";
-                                    echo "<td><div class='nome'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'><p>" . $linha['usuario'] . "</p></div></td>";
+                                    echo "<td><a href='processaselecao.php?amigo_selecionado=" . $linha['id_usuarios'] . "'><div class='nome'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'><p>" . $linha['usuario'] . "</p></div></a></td>";
                                     echo "<td><a href='#'>Favorito</a></td>";
                                     echo "<td><a href='deletaamigo.php?id_deletar=" . $linha['id_usuarios'] . " '>Excluir</a></td>";
                                     echo "</tr>";
@@ -135,7 +126,7 @@
             </div>
 
             <?php
-            //erro ao adicionar os amigos
+            //Rrro ao tentar adicionar os amigos
             if (isset($_SESSION['erro_amigo_n_encontrado'])) {
                 echo '<script>setTimeout(() => {alert("Usuário ou Id inválidos");}, 100);</script>';
                 unset($_SESSION['erro_amigo_n_encontrado']);
