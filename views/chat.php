@@ -5,7 +5,9 @@
                 <h3>Recentes</h3>
                 <span class="close close-sid" onclick="closeMenu()">&times;</span>
             </div>
-            <span id="recentes"></span>
+            <span id="recentes">
+                <!-- Exibi as recentes conversas entre as amizades via AJAX -->
+            </span>
         </div>
 
         <div class="content">
@@ -20,7 +22,7 @@
                     echo "<img src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $_SESSION['usuario'] . "'>";
                     ?>
                     <div class="nome-id">
-                        <span><?= $_SESSION['usuario'] ?></span><br>
+                        <span><?= $_SESSION['usuario'] ?></span>
                         <span>ID: <?= $_SESSION['id_user'] ?></span>
                     </div>
                 </div>
@@ -48,10 +50,16 @@
                         <div class="mensagens" id="msg">
                             <!-- Mensagens serão adicionadas via ajax -->
                         </div>
-                        <form class="escrever">
+                        <div class="scroll-down" id="scrollDown" onclick="msgScrollHeight()">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
+                            </svg>
+                        </div>
+                        <form class="escrever" onsubmit="sendMessage(); return false">
                             <input type="text" name="text" id="text" class="msg" required minlength="1">
-                            <input type="submit" onclick="sendMessage(); return false" class="msgenviar" value="Enviar">
+                            <input type="submit" class="msgenviar" value="Enviar">
                         </form>
+
                     </div>
                 </section>
             <?php
@@ -126,7 +134,8 @@
             </div>
 
             <?php
-            //Rrro ao tentar adicionar os amigos
+            /* TRATAMENTO DE ERROS */
+            /* Erro modal amgios */
             if (isset($_SESSION['erro_amigo_n_encontrado'])) {
                 echo '<script>setTimeout(() => {alert("Usuário ou Id inválidos");}, 100);</script>';
                 unset($_SESSION['erro_amigo_n_encontrado']);
@@ -135,6 +144,7 @@
                 echo '<script>setTimeout(() => {alert("Usúario já adicionado");}, 100);</script>';
                 unset($_SESSION['erro_mesmo_amigo']);
             }
+            /* Erro modal configuração */
             if (isset($_SESSION['erro_senha_errada'])) {
                 echo "<script>setTimeout(() => {alert('Senha Errada')}, 100)</script>";
                 unset($_SESSION['erro_senha_errada']);
@@ -143,7 +153,6 @@
                 echo "<script>setTimeout(() => {alert('Você não pode redefinir a mesma senha')}, 100)</script>";
                 unset($_SESSION['erro_mesma_senha']);
             }
-
 
             /* mantem os modais ativos ao pressionar o input*/
             if (isset($_SESSION['modal'])) {

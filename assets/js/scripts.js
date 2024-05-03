@@ -32,17 +32,18 @@ function msgScrollHeight() {
 /* Ajax para atualizar o chat em tempo real */
 var ultimosDadosChat = null;
 var ultimosDadosRecentes = null;
+var ultimosDadosScroll = null;
 
 function updateChat() {
   $.ajax({
     url: 'ajax_fetch_msg.php',
     success: function (data) {
       // Verifica se houve uma mudança nos dados recebidos
-      $('#msg').html(data); // Atualiza o conteúdo do chat
       if (houveAtualizacaoChat(data)) {
+        $('#msg').html(data); // Atualiza o conteúdo do chat
         msgScrollHeight(); // Chama a função para ajustar a altura da mensagem
       }
-      setTimeout(updateChat, 1000); // Agende a próxima atualização
+      setTimeout(updateChat, 100); // Agende a próxima atualização
     }
   });
 }
@@ -63,7 +64,28 @@ function updateRecentes() {
         // Verifica se houve uma mudança nos dados recebidos
         $('#recentes').html(data); // Atualiza o conteúdo do chat
       }
-      setTimeout(updateRecentes, 1000); // Agende a próxima atualização
+      setTimeout(updateRecentes, 100); // Agende a próxima atualização
+    }
+  });
+}
+
+/* Mostrar ou esconde o botão de scroll quando o scroll bar estiver muito alta */
+function scrollButton() {
+  $.ajax({
+    success: function (data) {
+      setTimeout(() => {
+        var scrollMsg = document.getElementById("msg");
+        var scrollDown = document.getElementById("scrollDown");
+        //console.log(scrollMsg.scrollTop);
+        if (houveAtualizacaoScroll(scrollMsg.scrollTop)) {
+          if (scrollMsg.scrollTop <= scrollMsg.scrollHeight * 0.7 && scrollMsg.scrollTop >= 2500) {
+            scrollDown.style.display = "block";
+          } else {
+            scrollDown.style.display = "none";
+          }
+        }
+      }, 1);
+      setTimeout(scrollButton, 1);
     }
   });
 }
@@ -72,6 +94,14 @@ function updateRecentes() {
 function houveAtualizacaoChat(novosDados) {
   if (ultimosDadosChat != novosDados) {
     ultimosDadosChat = novosDados;
+    return true;
+  }
+  return false;
+}
+
+function houveAtualizacaoScroll(novosDados) {
+  if (ultimosDadosScroll != novosDados) {
+    ultimosDadosScroll = novosDados;
     return true;
   }
   return false;
@@ -96,6 +126,7 @@ function closeMenu() {
 }
 
 /* Iniciar Funções */
+scrollButton(); //inicia a verificação do botao de scroll
 updateChat(); // Inicia a atualização do chat
 updateRecentes(); // Inicia a atualização de conversas recentes
 msgScrollHeight(); // Define que a barra de rolagem vai estar no fim

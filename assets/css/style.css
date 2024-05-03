@@ -1,7 +1,7 @@
 /* Geral */
 body {
     background-color: #f4f4f4;
-    overflow-y: hidden;
+    
     color: white;
 }
 
@@ -220,6 +220,17 @@ section {
     margin: 0px auto;
 }
 
+.scroll-down {
+    z-index: 10;
+    position: absolute;
+    display: none;
+    min-width: 50px;
+    height: auto;
+    color: #555;
+    right: 20px;
+    bottom: 100px;
+}
+
 /* Input msg e botão enviar msg */
 input {
     padding: 8px;
@@ -228,7 +239,7 @@ input {
 }
 
 .escrever {
-    padding: 10px;
+    padding: 1px 10px 10px 10px;
     display: flex;
     flex-direction: row;
 }
@@ -257,7 +268,7 @@ input[type="submit"] {
     padding-top: 30px;
 }
 
-.form-login input{
+.form-login input {
     margin-bottom: 14px;
 }
 
@@ -390,17 +401,28 @@ input[type="submit"] {
     background-color: #45a049;
 }
 
-
 /* Media query para responsividade em outros dispositivos */
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .open-sid-menu {
         min-width: 80vw !important;
     }
+
+    .modal-content {
+        width: 100vw;
+    }
+
+    .form-login{
+        width: 80vw;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+    .modal input {
+        width: 60vw;
+    }
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
@@ -425,7 +447,6 @@ input[type="submit"] {
         z-index: 10;
         display: flex;
         min-width: 50vw;
-        animation: alternate  2s infinite ease-in-out;
     }
 }
 

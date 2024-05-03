@@ -1,8 +1,10 @@
 <?php
 session_start();
+/* Desativa os erros do php */
 mysqli_report(MYSQLI_REPORT_OFF);
 $servidor = "localhost";
 $usuario = "root";
+/* colocar senha depois */
 $senha = "";
 $database = "chat";
 
@@ -22,17 +24,22 @@ if (isset($_SESSION['login'])) {
     $query = "SELECT count(distinct id_user2) as qtd_amigos FROM msg WHERE id_user1 = $id_usuario";
     $consulta_qtd_amigos = mysqli_query($conexao, $query);
     $qtd_amigos = (mysqli_fetch_assoc($consulta_qtd_amigos)['qtd_amigos']);
-    $query = "SELECT *
-    FROM amigos
-    INNER JOIN usuarios ON amigos.id_user2 = usuarios.id_usuarios
+    $query = "SELECT amigos.*, usuarios.*, m.* 
+    FROM amigos 
+    INNER JOIN usuarios ON amigos.id_user2 = usuarios.id_usuarios 
     INNER JOIN (
-        SELECT id_user1, id_user2, dia, MAX(hora) AS hora
-        FROM msg
-        WHERE (id_user1, id_user2) IN (SELECT id_user1, id_user2 FROM amigos)
-        GROUP BY id_user1, id_user2, dia
-    ) AS ultima_msg ON (amigos.id_user1 = ultima_msg.id_user1 AND amigos.id_user2 = ultima_msg.id_user2 OR amigos.id_user1 = ultima_msg.id_user2 AND amigos.id_user2 = ultima_msg.id_user1)
-    WHERE amigos.id_user1 = $id_usuario
-    ORDER BY ultima_msg.dia DESC, ultima_msg.hora DESC LIMIT $qtd_amigos;";
+        SELECT id_user1, id_user2, MAX(CONCAT(dia, ' ', hora)) AS ultima_msg 
+        FROM msg 
+        WHERE (id_user1, id_user2) IN (SELECT id_user1, id_user2 FROM amigos) 
+        GROUP BY id_user1, id_user2
+    ) AS ultima_msg ON (
+        (amigos.id_user1 = ultima_msg.id_user1 AND amigos.id_user2 = ultima_msg.id_user2) OR 
+        (amigos.id_user1 = ultima_msg.id_user2 AND amigos.id_user2 = ultima_msg.id_user1)
+    ) 
+    INNER JOIN msg AS m ON (m.id_user1 = amigos.id_user1 AND m.id_user2 = amigos.id_user2 AND m.dia = SUBSTRING(ultima_msg.ultima_msg, 1, 10) AND m.hora = SUBSTRING(ultima_msg.ultima_msg, 12)) 
+    WHERE amigos.id_user1 = $id_usuario 
+    ORDER BY m.dia DESC, m.hora DESC 
+    LIMIT $qtd_amigos;";
     $consulta_recentes = mysqli_query($conexao, $query);
 
     $amigo_selecionado = $_SESSION['amigo_selecionado']  ?? 0;
