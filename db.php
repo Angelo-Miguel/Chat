@@ -1,13 +1,13 @@
 <?php
-session_start();
 /* Desativa os erros do php */
 mysqli_report(MYSQLI_REPORT_OFF);
+session_start();
+
 $servidor = "localhost";
 $usuario = "root";
 /* colocar senha depois */
 $senha = "";
 $database = "chat";
-
 
 $conexao = @mysqli_connect($servidor, $usuario, $senha, $database);
 if (isset($_SESSION['login'])) {

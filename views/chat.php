@@ -21,8 +21,8 @@
                     $conteudoArquivo = (mysqli_fetch_assoc($consulta_login))['imagem'] ?? null;
                     echo "<img src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $_SESSION['usuario'] . "'>";
                     ?>
-                    <div class="nome-id">
-                        <span><?= $_SESSION['usuario'] ?></span>
+                    <div class="info-perfil">
+                        <span class="nome-perfil"><?= $_SESSION['usuario'] ?></span>
                         <span>ID: <?= $_SESSION['id_user'] ?></span>
                     </div>
                 </div>
