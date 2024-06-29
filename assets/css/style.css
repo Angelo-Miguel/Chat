@@ -113,7 +113,6 @@ section {
     text-overflow: ellipsis;
 }
 
-
 .menu-lateral a:hover {
     background-color: rgb(151, 151, 151);
 }
@@ -127,6 +126,54 @@ section {
 
 .close-sid {
     display: none;
+}
+
+/* Balão de frases motivacionais */
+.balao {
+    position: absolute;
+    width: 400px;
+    height: 150px;
+    border-radius: 40px;
+    padding: 15px;
+    text-align: justify;
+    border: 1px solid black;
+    animation: moveLeft 13s linear infinite;
+    animation-delay: 10s; /* Delay de 10 segundos antes de começar a animação */
+}
+
+.msg {
+    color: black;
+    height: 100%;
+    font-size: large;
+}
+
+.balao .autor {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    15% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    25% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    40% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* perfil e header */
@@ -154,15 +201,15 @@ section {
     margin-right: 10px;
 }
 
-.info-perfil{
+.info-perfil {
     display: flex;
     flex-direction: column;
-    text-align: right   ;
+    text-align: right;
     overflow: hidden;
 }
 
-.nome-perfil{
-    text-wrap: nowrap;    
+.nome-perfil {
+    text-wrap: nowrap;
 }
 
 /* Chat  e header do chat*/
@@ -174,8 +221,6 @@ section {
     border: 1px solid #ccc;
     border-radius: 0px 0px 10px 10px;
 }
-
-/* aaaaaaaaaaaaaaaa aaaaaaaa aaaaa */
 
 .content-header-chat {
     display: flex;
@@ -222,9 +267,8 @@ section {
 }
 
 .msg2 {
-    margin-left: auto
-        /* Empurra .msg2 para a direita */
-    ;
+    /* Empurra .msg2 para a direita */
+    margin-left: auto;
 }
 
 .horas {
@@ -376,7 +420,7 @@ input[type="submit"] {
     text-align: left;
 }
 
-#amigos td:first-child{
+#amigos td:first-child {
     max-width: 23vw;
 }
 
@@ -385,10 +429,11 @@ input[type="submit"] {
     position: relative;
     align-items: center;
     gap: 10px;
-    max-width:inherit;
+    max-width: inherit;
     overflow: hidden;
 }
-#amigos .nome p{
+
+#amigos .nome p {
     text-wrap: nowrap;
 }
 
@@ -451,6 +496,11 @@ input[type="submit"] {
     }
 
     .form-login {
+        width: 80vw;
+    }
+
+    .balao{
+        top: 230px;
         width: 80vw;
     }
 }

@@ -59,14 +59,22 @@
                             <input type="text" name="text" id="text" class="msg" required minlength="1">
                             <input type="submit" class="msgenviar" value="Enviar">
                         </form>
-
                     </div>
                 </section>
             <?php
             } else {
             ?>
                 <!-- Arumar isso depois | tela quando nao tem nenhum amigo selecionado-->
-                <div style="height: 82.5vh"></div>
+                <div style="height:82.5vh; display: flex; justify-content: center; align-items: center;">
+                    <div class="balao">
+                        <div class="msg">
+                            <span class="frase">
+                                <div style="text-align: center;">Bem-vindo ao nosso chat!</div>Selecione um usuário para começar a conversa.
+                            </span>
+                            <div class="autor"></div>
+                        </div>
+                    </div>
+                </div>
             <?php
             }
             ?>

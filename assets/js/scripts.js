@@ -1,3 +1,54 @@
+/* Frases quando não tem nenhum usuario selecionado */
+const frases = [
+  { text: '"O primeiro dever da inteligência é desconfiar dela mesmo"', autor: 'Albert Einstein' },
+  { text: '"A vida é 10% o que acontece comigo e 90% como eu reajo a isso"', autor: 'Charles Swindoll' },
+  { text: '"O sucesso é ir de fracasso em fracasso sem perder o entusiasmo"', autor: 'Winston Churchill' },
+  { text: '"A persistência é o caminho do êxito"', autor: 'Charles Chaplin' },
+  { text: '"O único limite para a nossa realização de amanhã são as nossas dúvidas de hoje."', autor: 'Franklin D. Roosevelt' },
+  { text: '"A vida é o que acontece enquanto você está ocupado fazendo outros planos."', autor: 'John Lennon' },
+  { text: '"Se você quer viver uma vida feliz, amarre-se a uma meta, não a pessoas ou coisas."', autor: 'Albert Einstein' },
+  { text: '"Não é o mais forte que sobrevive, nem o mais inteligente, mas o que melhor se adapta às mudanças."', autor: 'Charles Darwin' },
+  { text: '"A felicidade não é algo pronto. Ela vem de suas próprias ações."', autor: 'Dalai Lama' },
+  { text: '"O futuro pertence àqueles que acreditam na beleza de seus sonhos."', autor: 'Eleanor Roosevelt' },
+  { text: '"A única maneira de fazer um ótimo trabalho é amar o que você faz."', autor: 'Steve Jobs' },
+  { text: '"Não espere. O tempo nunca será justo."', autor: 'Napoleon Hill' },
+  { text: '"A maior glória em viver não está em nunca cair, mas em se levantar cada vez que caímos."', autor: 'Nelson Mandela' },
+  { text: '"A jornada de mil milhas começa com um passo."', autor: 'Lao Tsé' },
+  { text: '"Acredite que você pode e você já está no meio do caminho."', autor: 'Theodore Roosevelt' },
+  { text: '"O sucesso geralmente vem para aqueles que estão ocupados demais para procurá-lo."', autor: 'Henry David Thoreau' },
+  { text: '"A melhor maneira de prever o futuro é criá-lo."', autor: 'Peter Drucker' },
+
+  { text: '"Confira as últimas atualizações no nosso blog."', autor: '' },
+  { text: '"Tem alguma dúvida? Confira nossa página de Perguntas Frequentes."', autor: '' },
+  { text: '"Confira as últimas atualizações no nosso blog."', autor: '' },
+  { text: '"Tem alguma dúvida? Confira nossa página de Perguntas Frequentes."', autor: '' }
+];
+
+const balao = document.querySelector('.balao');
+const fraseElement = document.querySelector('.frase');
+const autorElement = document.querySelector('.autor');
+
+function getFraseAleatoria() {
+  const randomIndex = Math.floor(Math.random() * frases.length);
+  return frases[randomIndex];
+}
+
+function atualizarFrase() {
+  const novaFrase = getFraseAleatoria();
+  fraseElement.textContent = novaFrase.text;
+  autorElement.textContent = novaFrase.autor;
+}
+
+/* ultiliza aniamationstart para atualizar pela primeira vez depois só usa o animationiteration */
+balao.addEventListener('animationstart', () => {
+  setTimeout(atualizarFrase, 3000); // 3 segundo após o início da animação
+});
+
+balao.addEventListener('animationiteration', () => {
+  setTimeout(atualizarFrase, 3000); // 3 segundo após a iteração da animação
+});
+
+
 /* Modal amigos */
 // Função para abrir o modal com o ID especificado
 function openModal(id) {
@@ -75,13 +126,14 @@ function scrollButton() {
     success: function (data) {
       setTimeout(() => {
         var scrollMsg = document.getElementById("msg");
-        var scrollDown = document.getElementById("scrollDown");
-        //console.log(scrollMsg.scrollTop);
-        if (houveAtualizacaoScroll(scrollMsg.scrollTop)) {
-          if (scrollMsg.scrollTop <= scrollMsg.scrollHeight * 0.7 && scrollMsg.scrollTop >= 2500) {
-            scrollDown.style.display = "block";
-          } else {
-            scrollDown.style.display = "none";
+        if (scrollMsg) {
+          var scrollDown = document.getElementById("scrollDown");
+          if (houveAtualizacaoScroll(scrollMsg.scrollTop)) {
+            if (scrollMsg.scrollTop <= scrollMsg.scrollHeight * 0.7 && scrollMsg.scrollTop >= 2500) {
+              scrollDown.style.display = "block";
+            } else {
+              scrollDown.style.display = "none";
+            }
           }
         }
       }, 1);
