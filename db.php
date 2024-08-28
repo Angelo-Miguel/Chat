@@ -42,11 +42,10 @@ if (isset($_SESSION['login'])) {
     LIMIT $qtd_amigos;";
     $consulta_recentes = mysqli_query($conexao, $query);
 
-    $amigo_selecionado = $_SESSION['amigo_selecionado']  ?? 0;
-
+    $amigo_selecionado = $_SESSION['amigo_selecionado'] ?? 0;
     $query = "SELECT * FROM msg inner join usuarios on msg.id_user1=usuarios.id_usuarios where msg.id_user1 = '$amigo_selecionado' and msg.id_user2 = $id_usuario or msg.id_user2 = '$amigo_selecionado' and msg.id_user1 = $id_usuario order by dia asc, hora asc";
     $consulta_msg = mysqli_query($conexao, $query);
 
     $query = "SELECT * FROM usuarios WHERE id_usuarios = '$amigo_selecionado'";
-    $consulta_amigo_selecionado = mysqli_query($conexao, $query);
+    $consulta_amigo_selecionado = mysqli_query($conexao, $query);    
 }

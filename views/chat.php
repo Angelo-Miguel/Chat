@@ -1,4 +1,4 @@
-    <div class="chat">
+    <div id="chat">
         <div id="sid-menu" class="menu-lateral">
             <div class="sid-title">
                 <span class="close-sid"></span>
@@ -33,18 +33,13 @@
                 <a onclick="openModal('modalConfig')">Configurações</a>
                 <a href="./logout.php">Sair</a>
             </nav>
+
             <?php
-            if ($amigo_selecionado != '0') {
+            if ($amigo_selecionado != 0) {
             ?>
                 <section>
-                    <div class="content-header-chat">
-                        <?php
-                        while ($linha = mysqli_fetch_array($consulta_amigo_selecionado)) {
-                            $conteudoArquivo = $linha['imagem'];
-                            echo "<img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'>";
-                            echo "<h4>" . $linha['usuario'] . "</h4>";
-                        }
-                        ?>
+                    <div class="content-header-chat" id="profile">
+                        <!-- Perfil do amigo será carregado aqui via ajax -->
                     </div>
                     <div class="container-chat">
                         <div class="mensagens" id="msg">
@@ -79,6 +74,7 @@
             }
             ?>
 
+
             <!-- Modal da aba Amigos -->
             <div id="modalAmigos" class="modal">
                 <div class="modal-content">
@@ -103,7 +99,7 @@
                                 while ($linha = mysqli_fetch_array($consulta_amigos)) {
                                     $conteudoArquivo = $linha['imagem'];
                                     echo "<tr class='amigo'>";
-                                    echo "<td><a href='processaselecao.php?amigo_selecionado=" . $linha['id_usuarios'] . "'><div class='nome'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'><p>" . $linha['usuario'] . "</p></div></a></td>";
+                                    echo "<td><a href='#' onclick='changeUserChat(" . $linha['id_usuarios'] . "); return false;'><div class='nome'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'><p>" . $linha['usuario'] . "</p></div></a></td>";
                                     echo "<td><a href='#'>Favorito</a></td>";
                                     echo "<td><a href='deletaamigo.php?id_deletar=" . $linha['id_usuarios'] . " '>Excluir</a></td>";
                                     echo "</tr>";
@@ -117,26 +113,35 @@
             <!-- Modal Configurações -->
             <div id="modalConfig" class="modal">
                 <div class="modal-content">
-                    <span class="close" onclick="closeModal('modalConfig')">&times;</span>
-                    <div class="modal-config">
-                        <h2>Configurações</h2>
-                        <form action="./processanome.php" method="post">
-                            <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" required>
-                            <input type="submit" value="Salvar">
-                        </form>
-                        <form action="./processafoto.php" method="post" enctype="multipart/form-data">
-                            <label for="profilePic">Foto de Perfil:</label>
-                            <input type="file" id="profilePic" name="profilePic" required>
-                            <input type="submit" value="Salvar" style="position: relative;top:-2px;">
-                        </form>
-                        <form action="./processasenha.php" method="post">
-                            <label for="currentPassword">Senha Atual:</label>
-                            <input type="password" id="currentPassword" name="currentPassword" required>
-                            <label for="newPassword">Senha Nova:</label>
-                            <input type="password" id="newPassword" name="newPassword" required>
-                            <input type="submit" value="Salvar">
-                        </form>
+
+                    <div class="header">
+                        <h1>Configurações</h1>
+                        <span class="close" onclick="closeModal('modalConfig')">&times;</span>
+                    </div>
+                    <div class="section-config">
+                        <div>
+                            <h3>Perfil</h3>
+                            <label for="avatar">Avatar:</label>
+                            <img src="./assets/img/nouser.png" class="img-perfil" alt="Avatar" style="width: 100px; height:100px">
+                            <button>Trocar</button>
+                            <label for="nomeExibido">Nome Exibido:</label>
+                            <input type="text" id="nomeExibido" value="Sinjas">
+                            <label for="status">Status:</label>
+                            <input type="text" id="status" value="Olá, agora eu estou usando o chat">
+                        </div>
+                        <div>
+                            <h3>Aparência</h3>
+                            <label for="tema">Tema:</label>
+                            <label class="switch">
+                                <input type="checkbox" id="themeSwitch">
+                                <span class="slider"></span>
+                            </label>
+                            <label for="tamanhoFonte">Tamanho da fonte:</label>
+                            <button>Pequena</button>
+                            <button>Média</button>
+                            <button>Grande</button>
+                        </div>
+                        <div></div>
                     </div>
                 </div>
             </div>

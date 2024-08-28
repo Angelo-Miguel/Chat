@@ -1,15 +1,12 @@
 /* Geral */
 body {
-    background-color: #f4f4f4;
-
-    color: white;
+    overflow-x: hidden;
 }
 
 header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #333;
     text-align: center;
     height: 7vh;
 }
@@ -32,7 +29,6 @@ header {
 
 footer {
     display: flex;
-    background-color: #333;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -42,8 +38,6 @@ footer {
 nav {
     display: flex;
     justify-content: space-evenly;
-    background-color: #444;
-    color: white;
     height: 3.5vh;
 }
 
@@ -51,14 +45,9 @@ nav a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     text-decoration: none;
     width: 140px;
     height: inherit;
-}
-
-nav a:hover {
-    background-color: rgb(151, 151, 151);
 }
 
 section {
@@ -66,7 +55,7 @@ section {
 }
 
 /*menu lateral e chat*/
-.chat {
+#chat {
     display: flex;
     flex-direction: row;
 }
@@ -81,18 +70,29 @@ section {
 .menu-lateral {
     display: flex;
     position: relative;
-    background-color: #555;
     width: 18vw;
     height: 100vh;
     overflow-y: auto;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
     flex-direction: column;
+}
+
+/* Animação para dispositivos móveis */
+@keyframes deslizar {
+    0% {
+        left: -100vw;
+        /* Início fora da tela */
+    }
+
+    100% {
+        left: 0;
+        /* Posição visível */
+    }
 }
 
 .menu-lateral a {
     display: flex;
     align-items: center;
-    color: #fff;
     text-decoration: none;
     margin: 1px 3px;
     padding: 2px 10px 2px 2px;
@@ -136,13 +136,12 @@ section {
     border-radius: 40px;
     padding: 15px;
     text-align: justify;
-    border: 1px solid black;
     animation: moveLeft 13s linear infinite;
-    animation-delay: 10s; /* Delay de 10 segundos antes de começar a animação */
+    animation-delay: 10s;
+    /* Delay de 10 segundos antes de começar a animação */
 }
 
 .msg {
-    color: black;
     height: 100%;
     font-size: large;
 }
@@ -158,18 +157,22 @@ section {
         transform: translateX(0);
         opacity: 1;
     }
+
     15% {
         transform: translateX(100%);
         opacity: 0;
     }
+
     25% {
         transform: translateX(-100%);
         opacity: 0;
     }
+
     40% {
         transform: translateX(0);
         opacity: 1;
     }
+
     100% {
         transform: translateX(0);
         opacity: 1;
@@ -361,11 +364,8 @@ input[type="submit"] {
 }
 
 .modal-content {
-    color: #333;
-    background-color: #fefefe;
     margin: 5% auto;
     padding: 10px 20px;
-    border: 1px solid #888;
     width: 80%;
 }
 
@@ -452,42 +452,119 @@ input[type="submit"] {
 }
 
 /* Modal Configurações */
-.modal-config form {
+
+#modalConfig .modal{
+    overflow-y: scroll;
+}
+
+#modalConfig .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#modalConfig .section-config {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#modalConfig .section-config div {
+    min-width: 30%;
+    min-width: 3vw;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#modalConfig .section-config div h3 {
+    text-align: center;
+    margin: 0;
     margin-bottom: 10px;
 }
 
-.modal-config label {
+#modalConfig .section-config div label {
     display: block;
     margin-bottom: 5px;
 }
 
-.modal-config h2 {
+#modalConfig .section-config div input[type="text"] {
+    width: 100%;
+    padding: 10px;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-.modal-config input {
-    width: 79%;
-    height: 33px;
+/* Estilo do switch */
+#modalConfig .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
 }
 
-.modal-config input[type="submit"] {
-    width: 20%;
-    height: 33px;
-    background-color: #4caf50;
-    color: white;
+#modalConfig .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#modalConfig .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+#modalConfig .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+#modalConfig input:checked+.slider {
+    background-color: #04AA6D;
+}
+
+#modalConfig input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+#modalConfig .section-config div button {
+    background-color: #4CAF50;
     border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.modal-config input[type="submit"]:hover {
-    background-color: #45a049;
-}
 
 /* Media query para responsividade em outros dispositivos */
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .open-sid-menu {
+        animation: deslizar 0.3s ease-in-out;
+        left: 0;
         min-width: 80vw !important;
     }
 
@@ -499,7 +576,7 @@ input[type="submit"] {
         width: 80vw;
     }
 
-    .balao{
+    .balao {
         top: 230px;
         width: 80vw;
     }
