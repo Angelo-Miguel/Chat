@@ -17,7 +17,7 @@ if (isset($_SESSION['login'])) {
     $id_usuario = (mysqli_fetch_assoc($consulta_login))['id_usuarios'] ?? 0;
     mysqli_data_seek($consulta_login, 0);
 
-    $query = "SELECT * FROM amigos inner join usuarios on id_user2 = id_usuarios where id_user1 =  $id_usuario";
+    $query = "SELECT * FROM amigos inner join usuarios on id_user2 = id_usuarios where id_user1 =  $id_usuario ORDER BY amigos.favorito DESC";
     $consulta_amigos = mysqli_query($conexao, $query);
 
     /* RECENTES */
@@ -38,7 +38,7 @@ if (isset($_SESSION['login'])) {
     ) 
     INNER JOIN msg AS m ON (m.id_user1 = amigos.id_user1 AND m.id_user2 = amigos.id_user2 AND m.dia = SUBSTRING(ultima_msg.ultima_msg, 1, 10) AND m.hora = SUBSTRING(ultima_msg.ultima_msg, 12)) 
     WHERE amigos.id_user1 = $id_usuario 
-    ORDER BY m.dia DESC, m.hora DESC 
+    ORDER BY amigos.favorito desc, m.dia DESC, m.hora DESC 
     LIMIT $qtd_amigos;";
     $consulta_recentes = mysqli_query($conexao, $query);
 

@@ -6,8 +6,6 @@ $conteudoArquivo = file_get_contents($_FILES["profilePic"]["tmp_name"]);
 
 // Converte o conteúdo do arquivo em um formato seguro para uso em consultas SQL
 $conteudoArquivo = mysqli_real_escape_string($conexao, $conteudoArquivo);
-
-// Prepara a instrução SQL para inserir os dados no banco de dados
 $query = "UPDATE usuarios SET imagem = '$conteudoArquivo' WHERE id_usuarios = '$id_user'";
 mysqli_query($conexao, $query);
 
@@ -15,4 +13,3 @@ mysqli_query($conexao, $query);
 $_SESSION['modal'] = 'modalConfig';
 
 header('location:index.php');
-?>

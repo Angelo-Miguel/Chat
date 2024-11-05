@@ -29,91 +29,85 @@
             </header>
 
             <nav>
-                <a onclick="openModal('modalAmigos')">Amigos</a>
+                <a onclick="openModal('modalFriends')">Amigos</a>
                 <a onclick="openModal('modalConfig')">Configurações</a>
                 <a href="./logout.php">Sair</a>
             </nav>
-
-            <?php
-            if ($amigo_selecionado != 0) {
-            ?>
-                <section>
-                    <div class="content-header-chat" id="profile">
-                        <!-- Perfil do amigo será carregado aqui via ajax -->
-                    </div>
-                    <div class="container-chat">
-                        <div class="mensagens" id="msg">
-                            <!-- Mensagens serão adicionadas via ajax -->
-                        </div>
-                        <div class="scroll-down" id="scrollDown" onclick="msgScrollHeight()">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
-                            </svg>
-                        </div>
-                        <form class="escrever" onsubmit="sendMessage(); return false">
-                            <input type="text" name="text" id="text" class="msg" required minlength="1">
-                            <input type="submit" class="msgenviar" value="Enviar">
-                        </form>
-                    </div>
-                </section>
-            <?php
-            } else {
-            ?>
-                <!-- Arumar isso depois | tela quando nao tem nenhum amigo selecionado-->
-                <div style="height:82.5vh; display: flex; justify-content: center; align-items: center;">
-                    <div class="balao">
-                        <div class="msg">
-                            <span class="frase">
-                                <div style="text-align: center;">Bem-vindo ao nosso chat!</div>Selecione um usuário para começar a conversa.
-                            </span>
-                            <div class="autor"></div>
-                        </div>
-                    </div>
-                </div>
-            <?php
-            }
-            ?>
-
+            <div id="conteudoChat">
+                <!-- conteudo do chat será adicionado via ajax -->
+            </div>
 
             <!-- Modal da aba Amigos -->
-            <div id="modalAmigos" class="modal">
+            <div id="modalFriends" class="modal">
                 <div class="modal-content">
-                    <span class="close" onclick="closeModal('modalAmigos')">&times;</span>
-                    <div class="modal-amigos">
-                        <h2>Amigos</h2>
-                        <form class='form-amigos' action="./processaamigos.php" method="post">
-                            <input type="text" placeholder="Nome de usuário" name="usuario">
-                            <input type="text" placeholder="ID" name="id">
-                            <input type="submit" value="Adicionar">
-                        </form>
-                        <table id="amigos" class="lista-amigos display">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Favoritar</th>
-                                    <th>Excluir</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                while ($linha = mysqli_fetch_array($consulta_amigos)) {
-                                    $conteudoArquivo = $linha['imagem'];
-                                    echo "<tr class='amigo'>";
-                                    echo "<td><a href='#' onclick='changeUserChat(" . $linha['id_usuarios'] . "); return false;'><div class='nome'><img class='img-perfil' src='data:image;base64," . base64_encode($conteudoArquivo) . "' alt='foto de perfil do " . $linha['usuario'] . "'><p>" . $linha['usuario'] . "</p></div></a></td>";
-                                    echo "<td><a href='#'>Favorito</a></td>";
-                                    echo "<td><a href='deletaamigo.php?id_deletar=" . $linha['id_usuarios'] . " '>Excluir</a></td>";
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                    <div class="header">
+                        <h1>Amigos</h1>
+                        <span class="close" onclick="closeModal('modalFriends')">&times;</span>
+                    </div>
+                    <div class="section-friends">
+                        <div class="friends-list">
+                            <h2>Lista de Amigos</h2>
+                            <div class="scrollTable">
+                                <table>
+                                    <!-- css inline deixa o thead fixada no topo ao "scrollar" para baixo -->
+                                    <thead style="position: sticky;top:0">
+                                        <tr>
+                                            <th colspan="2">Nome</th>
+                                            <th>Excluir</th>
+                                            <th>Favoritar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        while ($linha = mysqli_fetch_array($consulta_amigos)) {
+                                            $conteudoArquivo = $linha['imagem'];
+                                        ?>
+                                            <tr class="friend">
+                                                <td class="img" style="width: 30px">
+                                                    <a href="#" onclick="changeUserChat('<?= $linha['id_usuarios'] ?>')">
+                                                        <img class="img-perfil" src="data:image;base64,<?= base64_encode($conteudoArquivo) ?>" alt="foto de perfil do <?= $linha['usuario'] ?>">
+                                                    </a>
+                                                </td>
+                                                <td class="name">
+                                                    <a href="#" onclick="changeUserChat('<?= $linha['id_usuarios'] ?>')">
+                                                        <p><?= $linha["usuario"] ?></p>
+                                                    </a>
+                                                </td>
+                                                <td class="trash">
+                                                    <a href="deletaamigo.php?id_deletar=<?= $linha['id_usuarios'] ?>">
+                                                        <i class="fa-solid fa-trash" style="color: #000;"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="fav">
+                                                    <input type="checkbox" id="favCheckbox_<?= $linha['id_usuarios'] ?>" data-id="<?= $linha['id_usuarios'] ?>" class="favCheckbox" <?= $linha['favorito'] ? 'checked' : '' ?> onchange="toggleFavorite(<?= $linha['id_usuarios'] ?>, this.checked)">
+                                                    <label for="favCheckbox_<?= $linha['id_usuarios'] ?>" class="label-fav">
+                                                        <i class="fa-regular fa-star unchecked-icon"></i>
+                                                        <i class="fa-solid fa-star checked-icon"></i>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="add-friend">
+                            <h2>Adicionar Amigos</h2>
+                            <form action="./processaamigos.php" method="post">
+                                <input type="text" placeholder="Nome do Usuário" name="usuario">
+                                <input type="text" placeholder="ID" name="id">
+                                <input type="submit" value="Adicionar">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <!-- Modal Configurações -->
             <div id="modalConfig" class="modal">
                 <div class="modal-content">
-
                     <div class="header">
                         <h1>Configurações</h1>
                         <span class="close" onclick="closeModal('modalConfig')">&times;</span>
@@ -141,7 +135,27 @@
                             <button>Média</button>
                             <button>Grande</button>
                         </div>
-                        <div></div>
+                        <div>
+                            <h3>Segurança</h3>
+                            <form action="./processaemail">
+                                <label for="email">Seu novo Email:</label>
+                                <input type="email" id="email" name="email" required>
+                                <input type="submit" value="Trocar Email">
+                            </form>
+                            <form action="./processasenha.php" method="post">
+                                <label for="currentPassword">Senha Atual:</label>
+                                <input type="password" id="currentPassword" name="currentPassword" required>
+                                <label for="newPassword">Senha Nova:</label>
+                                <input type="password" id="newPassword" name="newPassword" required>
+                                <input type="submit" value="Salvar">
+                            </form>
+                            <form action="./processaexclusao">
+                                <input type="submit" value="Excluir conta" style="background-color: red;">
+                            </form>
+                            <form action="./processalimpaconversa">
+                                <input type="submit" value="Limpar as conversas" style="background-color: red;">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,133 +1,145 @@
 /* Tema Claro */
 .light-theme {
-    background-color: #f4f4f4;
-    color: white;
+  background-color: #f4f4f4;
+  color: #fff;
 }
 
 .light-theme header,
 .light-theme footer {
-    background-color: #333;
+  background-color: #333;
 }
 
 .light-theme nav {
-    background-color: #444;
+  background-color: #444;
 }
 
 .light-theme nav a {
-    color: #fff;
+  color: #fff;
 }
 
 .light-theme nav a:hover {
-    background-color: #979797;
+  background-color: #979797;
 }
 
 .light-theme .menu-lateral {
-    background-color: #555;
+  background-color: #555;
 }
 
 .light-theme .menu-lateral a {
-    color: #fff;
+  color: #fff;
 }
 
 .light-theme .content-header-chat {
-    background-color: #666;
+  background-color: #666;
 }
 
 .light-theme .msg1,
 .light-theme .msg2 {
-    background-color: #d9d9d9;
-    color: #222;
+  background-color: #d9d9d9;
+  color: #222;
 }
 
 .light-theme .balao {
-    border: 1px solid black;
-    color: black;
+  border: 1px solid #000;
+  color: #000;
 }
 
 .light-theme .msg {
-    color: #000;
+  color: #000;
 }
 
 .light-theme input[type="submit"] {
-    background-color: #333;
-    color: white;
+  background-color: #333;
+  color: #fff;
 }
 
-.light-theme .modal-content{
-    color: #333;
-    background-color: #fefefe;
-    border: 1px solid #888;
+.light-theme .modal-content {
+  color: #333;
+  background-color: #fefefe;
+  border: 1px solid #888;
 }
 
 /* Tema Escuro */
 .dark-theme {
-    background-color: #222;
-    color: white;
+  background-color: #222;
+  color: #fff;
 }
 
 .dark-theme header,
 .dark-theme footer {
-    background-color: #111;
-    color: #ccc;
+  background-color: #111;
+  color: #ccc;
 }
 
 .dark-theme nav {
-    background-color: #1c1818;
+  background-color: #1c1818;
 }
 
 .dark-theme nav a {
-    color: #ccc;
+  color: #ccc;
 }
 
 .dark-theme nav a:hover {
-    background-color: #444;
+  background-color: #444;
 }
 
 .dark-theme .menu-lateral {
-    background-color: #333;
+  background-color: #333;
 }
 
 .dark-theme .menu-lateral a {
-    color: #ccc;
+  color: #ccc;
 }
 
 .dark-theme .content-header-chat {
-    background-color: #444;
-    border:1px solid #fff;
+  background-color: #444;
+  border: 1px solid #fff;
 }
 
 .dark-theme .msg1,
 .dark-theme .msg2 {
-    background-color: #555;
-    color: #eee;
+  background-color: #555;
+  color: #eee;
 }
 
 .dark-theme .balao {
-    border: 1px solid #ccc;
-    color: #eee;
+  border: 1px solid #ccc;
+  color: #eee;
 }
 
 .dark-theme input[type="submit"] {
-    background-color: #111;
-    color: #ccc;
+  background-color: #111;
+  color: #ccc;
 }
 
 .dark-theme .dia {
-    background-color: #111;
+  background-color: #111;
 }
 
-.dark-theme .modal-content{
-    color: #ffffff;
-    background-color: #333;
-    border: 1px solid #888;
+.dark-theme .modal-content {
+  color: #fff;
+  background-color: #333;
+  border: 1px solid #888;
 }
 
-.light-theme #modalConfig .section-config div{
-    background-color: #f1eaea;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.light-theme #modalConfig .section-config div {
+  background-color: #f1eaea;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.dark-theme #modalConfig .section-config div{
-    background-color: #222;
-    box-shadow: 0 0 10px rgba(82, 82, 82, 0.1);
+.dark-theme #modalConfig .section-config div {
+  background-color: #222;
+  box-shadow: 0 0 10px rgba(82, 82, 82, 0.1);
+}
+
+.dark-theme #modalFriends th {
+  background-color: #222;
+}
+
+.dark-theme #modalFriends .friends-list .name a {
+  color: #fff;
+}
+
+.dark-theme #modalFriends .friends-list .trash .fa-trash {
+  color: #fff !important;
 }
