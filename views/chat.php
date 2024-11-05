@@ -31,7 +31,7 @@
             <nav>
                 <a onclick="openModal('modalFriends')">Amigos</a>
                 <a onclick="openModal('modalConfig')">Configurações</a>
-                <a href="./logout.php">Sair</a>
+                <a href="assets/php/logout.php">Sair</a>
             </nav>
             <div id="conteudoChat">
                 <!-- conteudo do chat será adicionado via ajax -->
@@ -74,7 +74,7 @@
                                                     </a>
                                                 </td>
                                                 <td class="trash">
-                                                    <a href="deletaamigo.php?id_deletar=<?= $linha['id_usuarios'] ?>">
+                                                    <a href="./assets/php/processadeletaamigo.php?id_deletar=<?= $linha['id_usuarios'] ?>">
                                                         <i class="fa-solid fa-trash" style="color: #000;"></i>
                                                     </a>
                                                 </td>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="add-friend">
                             <h2>Adicionar Amigos</h2>
-                            <form action="./processaamigos.php" method="post">
+                            <form action="./assets/php/processaamigos.php" method="post">
                                 <input type="text" placeholder="Nome do Usuário" name="usuario">
                                 <input type="text" placeholder="ID" name="id">
                                 <input type="submit" value="Adicionar">
@@ -137,22 +137,22 @@
                         </div>
                         <div>
                             <h3>Segurança</h3>
-                            <form action="./processaemail">
+                            <form action="../assets/php/processaemail">
                                 <label for="email">Seu novo Email:</label>
                                 <input type="email" id="email" name="email" required>
                                 <input type="submit" value="Trocar Email">
                             </form>
-                            <form action="./processasenha.php" method="post">
+                            <form action="../assets/php/processasenha.php" method="post">
                                 <label for="currentPassword">Senha Atual:</label>
                                 <input type="password" id="currentPassword" name="currentPassword" required>
                                 <label for="newPassword">Senha Nova:</label>
                                 <input type="password" id="newPassword" name="newPassword" required>
                                 <input type="submit" value="Salvar">
                             </form>
-                            <form action="./processaexclusao">
+                            <form action="../assets/php/processaexclusao">
                                 <input type="submit" value="Excluir conta" style="background-color: red;">
                             </form>
-                            <form action="./processalimpaconversa">
+                            <form action="../assets/php/processalimpaconversa">
                                 <input type="submit" value="Limpar as conversas" style="background-color: red;">
                             </form>
                         </div>

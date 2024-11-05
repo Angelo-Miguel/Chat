@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include './db.php';
 
 $usuario = addslashes($_POST['usuario']);
 $senha = md5($_POST['senha']);
@@ -13,7 +13,7 @@ if (mysqli_num_rows($consulta_senha) == 1) {
     $_SESSION['usuario'] = $usuario;
     $_SESSION['id_user'] = (mysqli_fetch_assoc($consulta_senha))['id_usuarios'] ?? null;
 
-    header('location:index.php');
+    header('location:../../index.php');
 } else {
-    header('location:index.php?erro_login');
+    header('location:../../index.php?erro_login');
 }

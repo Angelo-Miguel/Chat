@@ -1,5 +1,6 @@
 <?php
 include './db.php';
+
 $id_user = $_SESSION['id_user'];
 $senhaAntiga = md5($_POST['currentPassword']);
 $senhaNova = md5($_POST['newPassword']);

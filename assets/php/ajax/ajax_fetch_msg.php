@@ -1,5 +1,5 @@
 <?php
-include './db.php';
+include '../db.php';
 
 $diaatual = '0/0';
 while ($linha = mysqli_fetch_array($consulta_msg)) {

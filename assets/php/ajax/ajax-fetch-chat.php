@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../db.php';
 if ($amigo_selecionado != "0") {
 ?>
     <section>

@@ -17,4 +17,4 @@ if ($_SESSION['amigo_selecionado'] = $id_deletar) {
 // Nao deixa o modal fechar
 $_SESSION['modal'] = 'modalAmigos';
 
-header('location:index.php');
+header('location:../../index.php');

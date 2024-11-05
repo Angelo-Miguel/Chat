@@ -1,6 +1,6 @@
 <?php
-include 'db.php';
-include 'header.php';
+include 'assets/php/db.php';
+include 'assets/php/header.php';
 
 if (isset($_SESSION['login'])) {
     if (isset($_GET['pagina'])) {
@@ -22,11 +22,11 @@ switch ($pagina) {
         include './views/chat.php';
         break;
     case 'logout':
-        include 'logout.php';
+        include 'assets/php/logout.php';
         break;
     default:
         include 'views/login.php';
         break;
 }
 
-include 'footer.php';
+include 'assets/php/footer.php';

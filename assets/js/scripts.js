@@ -1,3 +1,4 @@
+/* Altera o thema ou carrega um se for um preset em cache */
 function theme() {
   const themeSwitch = document.getElementById("themeSwitch");
   if (themeSwitch) {
@@ -168,7 +169,7 @@ function changeUserChat(amigo_selecionado) {
     amigo_selecionado = "0";
   }
   $.ajax({
-    url: "processaselecao.php",
+    url: "assets/php/processaselecao.php",
     type: "GET",
     data: { amigo_selecionado: amigo_selecionado },
     success: function (response) {
@@ -187,7 +188,7 @@ function changeUserChat(amigo_selecionado) {
 
 function updateChat() {
   $.ajax({
-    url: "ajax-fetch-chat.php",
+    url: "assets/php/ajax/ajax-fetch-chat.php",
     success: function (response) {
       $("#conteudoChat").html(response);
     },
@@ -199,7 +200,7 @@ function updateChat() {
 
 function updateMsg() {
   $.ajax({
-    url: "ajax_fetch_msg.php",
+    url: "assets/php/ajax/ajax_fetch_msg.php",
     success: function (data) {
       if (houveAtualizacaoChat(data)) {
         $("#msg").html(data);
@@ -225,7 +226,7 @@ function updateMsg() {
 
 function markAsRead(id) {
   $.ajax({
-    url: "processalido.php",
+    url: "assets/php/processalido.php",
     type: "POST",
     data: {
       id: id,
@@ -235,7 +236,7 @@ function markAsRead(id) {
 
 function loadProfile() {
   $.ajax({
-    url: "ajax_fetch_profile.php",
+    url: "assets/php/ajax/ajax_fetch_profile.php",
     success: function (data) {
       $("#profile").html(data);
     },
@@ -244,14 +245,14 @@ function loadProfile() {
 
 function sendMessage() {
   var text = $("#text").val();
-  $.post("ajax_enviar_msg.php", { text: text }, function (data) {
+  $.post("assets/php/ajax/ajax_enviar_msg.php", { text: text }, function (data) {
     $("#text").val("");
   });
 }
 
 function updateRecentes() {
   $.ajax({
-    url: "ajax_fetch_recentes.php",
+    url: "assets/php/ajax/ajax_fetch_recentes.php",
     success: function (data) {
       if (houveAtualizacaoRecentes(data)) {
         $("#recentes").html(data);
@@ -284,7 +285,7 @@ function scrollButton() {
 // Ajax para o botão de favorito
 function toggleFavorite(userId, isChecked) {
   $.ajax({
-    url: "processafavorito.php",
+    url: "assets/php/processafavorito.php",
     type: "POST",
     data: {
       id: userId,

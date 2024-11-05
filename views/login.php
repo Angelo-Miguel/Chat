@@ -2,7 +2,7 @@
     <h1>Login</h1>
 </header>
 <div class="content-login">
-    <form action="./processalogin.php" method="post" class="form-login">
+    <form action="assets/php/processalogin.php" method="post" class="form-login">
         <label for="nome-usuario">Nome de usuário:</label>
         <input type="text" name="usuario" id="nome-usuario">
         <label for="senha">Senha:</label>

@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include './db.php';
 
 $usuario = addslashes($_POST['usuario']);
 $email = addslashes($_POST['email']);

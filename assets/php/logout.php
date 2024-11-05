@@ -8,4 +8,4 @@ if (!file_exists('C:\xampp\tmp')) {
 } else {
     echo "<script>console.log('Pasta já existe.')</script>";
 }
-header('Location: index.php');
+header('Location:../../index.php');

@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'db.php';
+include './db.php';
 
-$usuario = addslashes($_POST['usuario']);
+$usuario = addslashes($_POST['usuario']);   
 $id_usuario1 = addslashes($_POST['id']);
 $self_id = $_SESSION['id_user'];
 
@@ -28,4 +28,4 @@ if (mysqli_num_rows($verifica_amizade) == 0) {
 // Nao deixa o modal fechar
 $_SESSION['modal'] = 'modalAmigos';
 
-header("location:index.php");
+header("location:../../index.php");

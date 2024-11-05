@@ -1,5 +1,5 @@
 <?php 
-include 'db.php';
+include './db.php';
 
 $id_amigo = $_POST['id'];
 $favorito = $_POST['favorito'];

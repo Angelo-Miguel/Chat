@@ -1,5 +1,5 @@
 <?php
-include './db.php';
+include '../db.php';
 
 while ($linha = mysqli_fetch_array($consulta_recentes)) {
     $conteudoArquivo = $linha['imagem'];
